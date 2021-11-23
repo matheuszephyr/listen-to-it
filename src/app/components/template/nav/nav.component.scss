@@ -1,0 +1,31 @@
+.nav-menu-list{
+    color: blueviolet;
+    padding: 1px;
+
+    .nav-menu-item-icon{
+        margin: 5px;
+        font-size: 24px;
+    }
+
+}
+
+.navigation-content{
+
+    background-color: white;
+
+    .menu-button{
+        //border-radius: 50px;   
+        background-color: blueviolet;  
+        color: black;   
+        padding: unset;
+        display: flex;
+        justify-content: center;
+        min-width: auto;
+        width: 35px;
+
+        &-icon{
+            font-size: 31px;
+        }
+    }
+
+}

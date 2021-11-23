@@ -1,0 +1,28 @@
+@use "@material/tab-bar/mdc-tab-bar";
+@use "@material/tab-scroller/mdc-tab-scroller";
+@use "@material/tab-indicator/mdc-tab-indicator";
+@use "@material/tab/mdc-tab";
+@import "../../../../styles.scss";
+
+
+.lyrics {
+    &-card {
+        padding: 1rem;
+        background-color: white;
+        margin-bottom: 0.5rem;
+
+        &-title {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            color: $primary-color;
+        }
+    }
+
+    &-value{
+        
+        &-content{
+            margin-top: 1rem;
+            color: black;
+        }
+    }
+}

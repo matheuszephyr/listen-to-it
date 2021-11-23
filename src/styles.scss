@@ -1,1 +1,104 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+
+$primary-color: blueviolet;
+$secondary-color: #212121;
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.main{
+    &-page-header{
+        background-color: $primary-color;
+    }
+
+    &-page-footer{
+        background-color: $primary-color;
+    } 
+
+    &-page-card{
+        margin: 1rem;
+        padding: 1rem;
+        background-color: #212121;
+        color: white;
+        border-radius: 10px;
+
+        .page-card-title{
+            font-family: 'Lobster Two', cursive;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+        }
+    }
+
+    
+}
+
+
+.color {
+    &-text {
+        &-primary {
+            color: $primary-color;
+        }
+
+        &-secondary {
+            color: $secondary-color;
+        }
+    }
+
+    &-bg {
+        &-primary {
+            color: $primary-color;
+        }
+
+        &-secondary {
+            color: $secondary-color;
+        }
+    }
+}
+
+.button{
+    &-primary{
+        background-color: $primary-color;
+        color: white;
+
+        &:hover{
+            background-color: rgb(132, 0, 255);
+        }
+    }
+}
+
+mat-spinner{
+    position: fixed !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 100 !important;
+    justify-content: center !important;
+    align-items: center !important;
+    display: flex !important;
+
+    svg{
+        position: relative !important;
+    }
+}
+
+::ng-deep .mat-focused .mat-form-field-label {
+    /*change color of label*/
+    color: blueviolet !important;
+}
+
+::ng-deep.mat-form-field-underline {
+    /*change color of underline*/
+    background-color: blueviolet !important;
+}
+
+::ng-deep.mat-form-field-ripple {
+    /*change color of underline when focused*/
+    background-color: blueviolet !important;
+}

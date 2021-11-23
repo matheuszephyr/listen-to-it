@@ -1,0 +1,28 @@
+<mat-card class="lyrics-card">
+    <mat-card-title class="lyrics-card-title">Letras</mat-card-title>
+
+    <div class="language-tab-bar mdc-tab-bar" role="tablist">
+        <div class="mdc-tab-scroller">
+          <div class="mdc-tab-scroller__scroll-area">
+            <div class="mdc-tab-scroller__scroll-content">
+              <button (click)="viewLyricsValue(lyric.language)" *ngFor="let lyric of this.lyricsList" class="mdc-tab mdc-tab--active" role="tab" aria-selected="true" tabindex="0">
+                <span class="mdc-tab__content">
+                  <span class="mdc-tab__text-label">{{lyric.language}}</span>
+                  <span *ngIf="lyric.original" class="mdc-tab__text-label">(Original)</span>
+                </span>
+                <span class="mdc-tab-indicator mdc-tab-indicator--active">
+                  <span class="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+                <span class="mdc-tab__ripple"></span>
+              </button>              
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="lyrics-value-content">
+        <div [innerHTML]="this.lyricsView">
+        </div>
+      </div>
+
+</mat-card>

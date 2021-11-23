@@ -1,0 +1,61 @@
+.music {
+    &-info {
+        display: flex;
+        margin-bottom: 0.5rem;
+        align-items: center;
+
+        &-icon {
+            margin-right: 0.5rem;
+            color: blueviolet;
+        }
+
+        &-value {
+            font-size: 18px;
+        }
+    }
+
+    &-name {
+        align-items: center;
+        display: flex;
+        text-decoration: none;
+    }
+
+    &-artist {
+        align-items: center;
+        display: flex;
+    }
+
+    &-link {
+        display: flex;
+        align-items: center;
+
+        .button {
+            display: flex;
+            max-width: 28px;
+            min-width: 25px;
+            align-items: center;
+            margin-right: 1rem;
+        }
+
+        .icon {
+            max-width: 100%;
+            display: flex;
+        }
+    }
+
+    &-like {
+        display: flex;
+        align-items: center;
+
+        &-button {
+            text-decoration: none;
+            color: blueviolet;
+            cursor: pointer;            
+        }
+
+        &-count {
+            margin-left: 0.5rem;
+        }
+    }
+
+}// fim da classe principal .music

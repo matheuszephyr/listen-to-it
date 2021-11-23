@@ -1,0 +1,77 @@
+.music-card{
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    display: flexbox;
+    background-color: white;
+    color: black;
+    font-weight: bolder;
+    border-radius: 10px;
+}
+
+
+.music-actions{
+    margin: 5px;    
+    width: auto;
+    display: flex;
+    align-items: center;  
+    justify-content: space-between;
+}
+.music-like-button{    
+    text-decoration: none;    
+    color: blueviolet;  
+    cursor: pointer;
+    justify-content: center;
+    display: flex;
+}
+
+.music-like-count{
+    margin: 3px;
+    color: black;    
+}
+
+.music-name{
+    align-items: center;
+    display: flex;
+    text-decoration: none;
+    color: blueviolet;
+}
+.music-artist{
+    align-items: center;
+    display: flex;
+}
+
+.material-icons.md-18 { 
+    font-size: 18px; 
+    margin-right: 5px;
+    color: black;    
+}
+
+.spotify-button{
+    display: flex;
+    max-width: 28px;
+    min-width: 25px;
+    align-items: center;
+}
+
+.spotify-icon{
+    max-width: 100%;
+    display: flex;
+}
+
+.music-link{
+    display: flex;
+
+    .button{
+        display: flex;
+        max-width: 28px;
+        min-width: 25px;
+        align-items: center;
+        margin: 2px;
+    }
+
+    .icon{
+        max-width: 100%;
+        display: flex;
+    }
+}
+

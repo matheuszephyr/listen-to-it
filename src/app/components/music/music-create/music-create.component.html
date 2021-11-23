@@ -1,0 +1,45 @@
+<mat-card class="main-page-card">
+    <mat-card-title class="page-card-title">Enviar Nova Musica</mat-card-title>
+    <form *ngIf="this.loged" [formGroup]="musicForm" novalidate autocomplete="off" (ngSubmit)="createMusicSubmit(musicForm.value)">
+        <h3 class="music-form-desc">Para enviar um música nova, preencha os campos e aguarde sua contribuição ser aprovada!</h3>
+
+        <mat-form-field appearance="outline" class="music-input">
+            <mat-label>Música</mat-label>
+            <input matInput id="musicName" formControlName="musicName" type="text" placeholder="Ex. All About You (feat. Foster The People)" name="musicName">  
+            <mat-error *ngIf="hasError('musicName', 'required')">O nome da música é obrigatório</mat-error>
+            <mat-error *ngIf="hasError('musicName', 'maxlength')">O nome da música deve conter no máximo 120 caractéres</mat-error>          
+        </mat-form-field>       
+
+        <mat-form-field appearance="outline" class="music-input">
+            <mat-label>Artista</mat-label>
+            <input matInput id="artistName" formControlName="artistName" type="text" placeholder="Artista ou Banda" name="artistName">
+            <mat-error *ngIf="hasError('artistName', 'required')">O nome do artista é obrigatório</mat-error>
+            <mat-error *ngIf="hasError('artistName', 'maxlength')">O nome do artista deve conter no máximo 120 caractéres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="music-input">
+            <mat-label>Spotify</mat-label>
+            <input matInput id="spotifyLink" formControlName="spotifyLink" type="text" placeholder="Link do Spotify" name="spotifyLink">
+            <mat-error *ngIf="hasError('spotifyLink', 'required')">O link do spotify é obrigatório</mat-error>
+            <mat-error *ngIf="hasError('spotifyLink', 'maxlength')">O link do spotify deve conter no máximo 300 caractéres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="music-input">
+            <mat-label>Youtube</mat-label>
+            <input matInput id="youtubeLink" formControlName="youtubeLink" type="text" placeholder="Link do Youtube" name="youtubeLink">
+            <mat-error *ngIf="hasError('youtubeLink', 'maxlength')">O link do youtube deve conter no máximo 300 caractéres</mat-error>
+        </mat-form-field>    
+        
+        <button mat-raised-button [disabled]="!musicForm.valid" class="button-primary">
+            Enviar Musica
+        </button>
+    </form>    
+
+    <mat-card *ngIf="!this.loged" class="card-login-error">
+        <span class="card-login-error-icon material-icons">
+            info
+            </span>
+            Você precisa realizar login para fazer um envio!
+    </mat-card>
+
+</mat-card>
