@@ -1,0 +1,18 @@
+<div class="comentary-container">
+
+    <div *ngFor="let comentary of this.comentaryList" class="comentary-card">
+        <div class="user-block">
+            <span class="user-icon material-icons">
+                portrait
+            </span>
+            <span>{{comentary.userName}}</span>
+        </div>
+        <div class="comentary-text">
+            <span>{{comentary.comentaryText}}</span>
+        </div>
+        <div class="comentary-date">
+            <span>{{comentary.createdAt}}</span>
+        </div>
+    </div>
+
+</div>

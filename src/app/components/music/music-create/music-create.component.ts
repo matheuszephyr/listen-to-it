@@ -18,22 +18,7 @@ import { Injectable } from '@angular/core';
 })
 export class MusicCreateComponent implements OnInit {
 
-  musicForm!: FormGroup;
-
-  musicTemplate: Music = {
-    name: "",
-    artistName: "",
-    spotifyLink: "",
-    youtubeLink: "",
-    albumName: "",
-    commentCount: 0,
-    haveLyrics: false,
-    idAlbum: 0,
-    idArtist: 0,
-    likeCount: 0,
-    userLiked: false,    
-    createdAt: new Date
-  };
+  musicForm!: FormGroup; 
 
   musicSubmitTemplate: MusicSubmit = {
     idUser: 2,

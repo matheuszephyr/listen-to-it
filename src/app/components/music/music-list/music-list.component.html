@@ -1,40 +1,41 @@
+<div class="main-page-card">
+    <h1 class="page-card-title">Ultimos Envios</h1>
+    <div>
+        <div class="music-card" *ngFor="let mus of musics">
+            <!-- <mat-card-title></mat-card-title> -->
+            <div class="music-name">
+                <span class="material-icons md-18">
+                    audiotrack
+                </span>
+                <a class="music-name" routerLink="/music/{{mus.id}}">{{mus.musicName}}</a>
+            </div>
+            <div class="music-artist">
+                <span class="material-icons md-18">
+                    mic_external_on
+                </span>
+                {{mus.artistName}}
+            </div>
+            <div class="music-actions">
+                <div class="music-like-button">
+                    <span (click)="likeMusic(mus.id)" class="material-icons music-like-button">
+                        thumb_up
+                    </span>
+                    <span class="music-like-count">{{mus.likeCount}}</span>
+                </div>
 
-<mat-card class="main-page-card">
-    <mat-card-title class="page-card-title">Ultimos Envios</mat-card-title>
-<mat-card class="music-card" *ngFor="let mus of musics">
-    <!-- <mat-card-title></mat-card-title> -->
-    <div class="music-name">
-        <span class="material-icons md-18">
-            audiotrack
-        </span>
-        <a class="music-name" routerLink="/music/{{mus.id}}">{{mus.name}}</a>
-    </div>
-    <div class="music-artist">
-        <span class="material-icons md-18">
-            mic_external_on
-        </span>
-        {{mus.artistName}}
-    </div>
-    <div class="music-actions">
-        <div class="music-like-button">
-            <span (click)="likeMusic(mus.id)" class="material-icons music-like-button">
-                thumb_up
-            </span>
-            <span class="music-like-count">{{mus.likeCount}}</span>    
-        </div>        
-        
-        <div class="music-link">
-            <span class="button">
-                <a href="{{mus.youtubeLink}}" target="_blank">
-                    <img class="icon" src="assets/img/youtube-icon.png" alt="Youtube">
-                </a>
-            </span>
-            <span class="button">
-                <a href="{{mus.spotifyLink}}" target="_blank">
-                    <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
-                </a>
-            </span>
+                <div class="music-link">
+                    <span class="button">
+                        <a href="https://www.youtube.com/watch?v={{mus.youtubeCode}}" target="_blank">
+                            <img class="icon" src="assets/img/youtube-icon.png" alt="Youtube">
+                        </a>
+                    </span>
+                    <span class="button">
+                        <a href="https://open.spotify.com/track/{{mus.spotifyCode}}" target="_blank">
+                            <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
+                        </a>
+                    </span>
+                </div>
+            </div>
         </div>
     </div>
-</mat-card>
-</mat-card>
+</div>

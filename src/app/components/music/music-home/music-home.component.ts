@@ -12,28 +12,28 @@ import { Component, OnInit } from '@angular/core';
 export class MusicHomeComponent implements OnInit {
 
   musicModel: Music = {
-    name: "Carregando...",
+    musicName: "Carregando...",
     artistName: "Carregando...",
-    spotifyLink: "Carregando...",
-    youtubeLink: "Carregando...",
+    spotifyCode: "",
+    youtubeCode: "",
     albumName: "Carregando...",
     commentCount: 0,
     haveLyrics: false,
     idAlbum: 0,
     idArtist: 0,
     likeCount: 0,
-    userLiked: false,    
+    userLiked: false,
     createdAt: new Date
   };
   userLoged = false;
   idMusic: number = 0;
 
   constructor(
-    private musicService: MusicService, 
-    private router: Router, 
+    private musicService: MusicService,
+    private router: Router,
     private route: ActivatedRoute,
     private userService: UserService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.idMusic = Number.parseInt(this.route.snapshot.paramMap.get('id') ?? "");
@@ -42,6 +42,12 @@ export class MusicHomeComponent implements OnInit {
     this.musicService.getMusicById(this.idMusic).subscribe(musicResult => {
 
       this.musicModel = musicResult;
+
+      if (this.musicModel.youtubeCode.length > 0) {
+        let tag = document.getElementById('youtubeframe');
+        tag.setAttribute('src', 'https://www.youtube.com/embed/' + this.musicModel.youtubeCode);
+      }
+      //document.body.appendChild(tag);
       //  setTimeout(()=>{                           
       //   this.musicModel = musicResult;
       // }, 3000);       

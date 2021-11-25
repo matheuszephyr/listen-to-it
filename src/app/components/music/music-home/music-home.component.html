@@ -2,52 +2,70 @@
     <mat-card-title class="page-card-title">Música</mat-card-title>
 
     <div class="music-details">
-        <div class="music-info">
-            <span class="music-info-icon material-icons md-18">
-                audiotrack
-            </span>
-            <span class="music-info-value">{{musicModel.name}}</span>
-        </div>
-        <div class="music-info">
-            <span class="music-info-icon material-icons md-18">
-                mic_external_on
-            </span>
-            <span class="music-info-value">{{musicModel.artistName}}</span>
-        </div>
-        <div class="music-info">
-            <span class="music-info-icon material-icons md-18">
-                library_music
-            </span>
-            <span class="music-info-value">{{musicModel.artistName}}</span>
-        </div>
 
-        <div class="music-info music-link">
-            <span class="music-info-icon material-icons md-18">
-                share
-            </span>
-            <span class="button">
-                <a href="{{musicModel.spotifyLink}}" target="_blank">
-                    <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
-                </a>
-            </span>
-            <span class="button">
-                <a href="{{musicModel.youtubeLink}}" target="_blank">
-                    <img class="icon" src="assets/img/youtube-icon.png" alt="Youtube">
-                </a>
-            </span>
+        <div class="music-details-container">
+
+            <div class="music-details-info-block">
+                <div class="music-info">
+                    <span class="music-info-icon material-icons md-18">
+                        audiotrack
+                    </span>
+                    <span class="music-info-value">{{musicModel.musicName}}</span>
+                </div>
+                <div class="music-info">
+                    <span class="music-info-icon material-icons md-18">
+                        mic_external_on
+                    </span>
+                    <span class="music-info-value">{{musicModel.artistName}}</span>
+                </div>
+                <div class="music-info">
+                    <span class="music-info-icon material-icons md-18">
+                        library_music
+                    </span>
+                    <span class="music-info-value">{{musicModel.albumName}}</span>
+                </div>
+
+                <div class="music-info music-link">
+                    <span class="music-info-icon material-icons md-18">
+                        share
+                    </span>
+                    <span class="button">
+                        <a href="https://open.spotify.com/track/{{musicModel.spotifyCode}}" target="_blank">
+                            <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
+                        </a>
+                    </span>
+                    <span class="button">
+                        <a href="https://www.youtube.com/watch?v={{musicModel.youtubeCode}}" target="_blank">
+                            <img class="icon" src="assets/img/youtube-icon.png" alt="Youtube">
+                        </a>
+                    </span>
+
+                </div>
+
+                <div class="music-like">
+                    <span class="material-icons music-like-button">
+                        thumb_up
+                    </span>
+                    <span class="music-like-count music-info-value">{{musicModel.likeCount}}</span>
+                </div>
+            </div>            
             
+            <div class="youtube-iframe">
+                <iframe id="youtubeframe" width="560" height="315"
+                    src="" title="YouTube video player"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+            </div>
+
+
         </div>
 
-        <app-lyrics-list [idMusic]="this.idMusic"></app-lyrics-list>
-
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/IGxG_EzDHZY" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-        <div class="music-like">
-            <span class="material-icons music-like-button">
-                thumb_up
-            </span>
-            <span class="music-like-count music-info-value">{{musicModel.likeCount}}</span>    
-        </div> 
+        <div class="music-component-block">
+            <app-lyrics-list class="music-component-lyrics" [idMusic]="this.idMusic"></app-lyrics-list>       
+            <app-music-comentary class="music-component-comentary" [idMusic]="this.idMusic"></app-music-comentary>
+        </div>
+        
 
     </div>
 

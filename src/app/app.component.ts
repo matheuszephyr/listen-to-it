@@ -1,3 +1,4 @@
+import { UserService } from './components/user/user.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,6 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'listen-to-it';
+
 }
 
 

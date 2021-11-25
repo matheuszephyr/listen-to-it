@@ -40,6 +40,7 @@ import { UserUpdateComponent } from './components/user/user-update/user-update.c
 import { SubmitListComponent } from './components/submit/submit-list/submit-list.component';
 import { LoadingComponent } from './components/template/loading/loading.component';
 import { LyricsListComponent } from './components/lyrics/lyrics-list/lyrics-list.component';
+import { MusicComentaryComponent } from './components/music/music-comentary/music-comentary.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { LyricsListComponent } from './components/lyrics/lyrics-list/lyrics-list
     UserUpdateComponent,
     SubmitListComponent,
     LoadingComponent,
-    LyricsListComponent
+    LyricsListComponent,
+    MusicComentaryComponent
   ],
   imports: [
     BrowserModule,

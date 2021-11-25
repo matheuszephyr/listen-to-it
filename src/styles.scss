@@ -4,6 +4,7 @@
 
 $primary-color: blueviolet;
 $secondary-color: #212121;
+$gradient-color: linear-gradient(to top, rgba(140, 20, 252, 1), rgba(140, 20, 252, 0.541));
 
 html,
 body {
@@ -12,6 +13,32 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+#wrapper {
+    background: #ccc;
+    overflow: hidden;
+    transition: height 200ms;
+  }
+
+.app{
+    &-logo{
+        max-width: 50px;
+    }
+
+    &-header{
+        min-height: 70px;
+    }
+
+    &-container{
+        display: flex;
+        flex-flow: column;
+        height: 100%;
+    }
+
+    &-footer{
+        margin-top: auto;
+    }
 }
 
 .main{
@@ -102,3 +129,63 @@ mat-spinner{
     /*change color of underline when focused*/
     background-color: blueviolet !important;
 }
+
+/*#region Hover Glow Effect*/
+.glow-on-hover {
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #111;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 10px;
+
+    &:before {
+        content: '';
+        background: linear-gradient(45deg, #6200ff, #5900ff, #8400ff, #a200ff, #6f00ff, #0026ff, #7a00ff, #a200ff, #4c00ff);
+        position: absolute;
+        top: -2px;
+        left:-2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+        border-radius: 10px;
+    }
+}
+
+.glow-on-hover:active {
+    color: #000
+}
+
+.glow-on-hover:active:after {
+    background: transparent;
+}
+
+.glow-on-hover:hover:before {
+    opacity: 1;
+}
+
+.glow-on-hover:after {
+    z-index: -1;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: #111;
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
+
+@keyframes glowing {
+    0% { background-position: 0 0; }
+    50% { background-position: 400% 0; }
+    100% { background-position: 0 0; }
+}
+/*#endregion Hover Glow Effect*/

@@ -1,0 +1,40 @@
+.comentary {
+    &-container {
+        padding: 0.5rem;
+        border: 2px solid blueviolet;
+        border-radius: 10px;
+        margin: 0.5rem;
+        margin-right: 0px;
+        margin-top: 0px;
+    }
+
+    &-card {
+        padding: 0.5rem;
+        border: 1px solid blueviolet;
+        border-radius: 5px;
+        background-color: black;
+        margin-bottom: 0.5rem;
+
+        .comentary-date{
+            font-size: 10px;
+            text-align: end;
+            font-weight: 500;
+        }
+
+        .user {
+            &-block {
+                display: flex;
+                align-items: center;
+                border-bottom: 1px solid blueviolet;
+                margin-bottom: 0.5rem;
+                padding-bottom: 0.5rem;
+
+            }
+
+            &-icon{
+                margin-right: 5px;
+                font-size: 30px;
+            }
+        }
+    }
+}

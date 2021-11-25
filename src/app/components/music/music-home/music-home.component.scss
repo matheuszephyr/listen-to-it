@@ -1,4 +1,12 @@
 .music {
+    &-details {
+        &-container {
+            display: flex;
+            justify-content: space-between;
+            flex-flow: wrap;
+        }
+    }
+
     &-info {
         display: flex;
         margin-bottom: 0.5rem;
@@ -50,7 +58,7 @@
         &-button {
             text-decoration: none;
             color: blueviolet;
-            cursor: pointer;            
+            cursor: pointer;
         }
 
         &-count {
@@ -58,4 +66,26 @@
         }
     }
 
-}// fim da classe principal .music
+    &-component {
+        &-block {
+            display: flex;
+            width: 100%;
+            align-items: flex-start;
+            justify-content: space-between;
+            flex-flow: wrap;
+        }
+        &-lyrics {
+            flex: auto;
+            max-width: 50%;
+        }
+        &-comentary{
+            max-width: 50%;
+        }
+    }
+} // fim da classe principal .music
+
+.youtube-iframe {
+    iframe {
+        max-width: 100%;
+    }
+}

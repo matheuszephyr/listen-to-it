@@ -1,7 +1,6 @@
 import { LyricsService } from './../lyrics.service';
 import { Lyrics } from './../lyrics.model';
 import { Component, Input, OnInit } from '@angular/core';
-import { MDCTabBar } from '@material/tab-bar';
 
 @Component({
   selector: 'app-lyrics-list',
@@ -13,42 +12,42 @@ export class LyricsListComponent implements OnInit {
   @Input() idMusic: number = 0;
 
   lyricsList: Lyrics[] = [];
-  lyricsView: string = "Carregando...";
+  lyricsView: Lyrics = {
+    id: 0,
+    language: "",
+    lyricsText: "Selecione uma linguagem para ver a letra!",
+    original: false,
+    idMusic: 0,
+    createdAt: new Date
+  };
+
 
   constructor(private lyricsService: LyricsService) { }
 
   ngOnInit(): void {
 
-    console.log(this.idMusic)
-
     this.lyricsService.getLyricsByFilter(this.idMusic).subscribe(returnLyrics => {
+
+      returnLyrics.forEach((lyric) => {
+        let jsonLyric = JSON.stringify(lyric.lyricsText);
+        lyric.lyricsText = jsonLyric.replace(/\\r\\n/gi, "</br>").trimEnd().trim();
+      });;
+
       this.lyricsList = returnLyrics;
-      console.log(this.lyricsList)
     });
 
   }
 
   viewLyricsValue(language: string) {
+
     this.lyricsList.forEach((lyric) => {
-      if (lyric.language == language)
-        this.lyricsView = lyric.lyricsText;
+      if (lyric.id > 0 && lyric.language == language && lyric.lyricsText.length > 0) {
+        this.lyricsView = lyric;
+        return;
+      }
     });
 
-    if(this.lyricsView.length > 0){
-      let jsonLyric = JSON.stringify(this.lyricsView);
-      this.lyricsView =  jsonLyric.replace(/\\r\\n/gi, "</br>");
-    }
-    else{
-      this.lyricsView = "Nenhum letra encontrada!"
-    }
-
-    // this.lyricsView = this.lyricsView.length > 0 ? this.lyricsView : "Nenhum letra encontrada!";
-    // console.log(this.lyricsView);
-    // this.lyricsView = this.lyricsView.replace("\n", "</br>");
-    // console.log(JSON.stringify(this.lyricsView));
-    // console.log("\\n")
-    
-  } 
+  }
 
 
 }

@@ -1,17 +1,18 @@
 export interface Music {
     id?: number
-    name: string
+    musicName: string
     idArtist: number
     artistName: string
-    idAlbum: number
+    idAlbum: number    
     albumName: string
     userLiked: boolean
     likeCount: number
     commentCount: number
-    spotifyLink: string
-    youtubeLink: string
+    spotifyCode: string
+    youtubeCode: string
     haveLyrics: boolean
     createdAt: Date
+    updatedAt?: Date
 }
 
 export interface MusicSubmit {
