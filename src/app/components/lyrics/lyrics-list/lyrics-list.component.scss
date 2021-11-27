@@ -12,6 +12,7 @@
         margin-bottom: 0.5rem;
         border: 3px solid blueviolet;
         border-radius: 10px;
+        max-width: 750px;
 
         &-title {
             font-size: 1.5rem;
@@ -25,5 +26,13 @@
             margin-top: 1rem;
             color: black;
         }
+    }
+
+    &-colab-list{
+        color: black;
+    font-size: 16px;
+    border-top: 2px solid blueviolet;
+    padding-top: 1rem;
+    margin-top: 1rem;
     }
 }

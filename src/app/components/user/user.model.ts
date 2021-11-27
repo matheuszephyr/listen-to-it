@@ -1,10 +1,11 @@
 export interface User {
     id?: number
     email: string
-    password: string
-    name: string
-    photo: string
+    passwordHash: string
+    userName: string
+    image: string
     userType: string
+    userScore: number
     createdAt: Date
 }
 
@@ -15,4 +16,10 @@ export interface UserSession{
     photo?:string
     userType?: string
     createdAt?: Date
+}
+
+export enum UserType{
+    System = 1,
+    Admin = 2,
+    User = 3
 }

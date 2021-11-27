@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { environment } from 'src/environments/environment';
+import { isNullOrEmpty, isNullOrUndefined } from '../util/validations';
 
 @Injectable({
   providedIn: 'root'
@@ -40,10 +41,9 @@ export class BaseService {
         return response;
       },
       complete: () => {
-        console.log("completelogin")
       }
     });
-    
+
   }
 
   requestPost(action: string, bodyParams = null, system = false): Observable<any> {
@@ -84,16 +84,21 @@ export class BaseService {
     return this.http.delete<any>(environment.baseUrlApiProd + action + stringQuery, options);
   }
 
-  private objectToQueryString(object: object): string {
-    const qs = Object.keys(object)
-      .map(key => `${key}=${object[key]}`)
-      .join('&');
-
+  private objectToQueryString(object: any): string {
+    let qs = "";
+    Object.keys(object)
+      .map(key => {
+        if (!isNullOrEmpty(object[key])){
+          qs += `${key}=${object[key]}&`
+        }
+      });
+      qs = qs.slice(0,-1);
+      console.log("qs:",qs);
     return qs;
   }
 
   private getCommomOptions(system = false, json = false): any {
-    
+
     let headers = new HttpHeaders();
     let token = system ? this.systemToken : this.userToken;
 

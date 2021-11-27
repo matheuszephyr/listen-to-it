@@ -1,3 +1,5 @@
+import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
+import { UserCreateUpdateComponent } from './components/user/user-create-update/user-create-update.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { MusicUpdateComponent } from './components/music/music-update/music-update.component';
 import { MusicHomeComponent } from './components/music/music-home/music-home.component';
@@ -32,6 +34,14 @@ const routes: Routes = [
   {
     path: "user/login",
     component: UserLoginComponent
+  },
+  {
+    path: "user/edit/:id",
+    component: UserCreateUpdateComponent
+  },
+  {
+    path: "user/profile/:id",
+    component: UserProfileComponent
   }
 ];
 

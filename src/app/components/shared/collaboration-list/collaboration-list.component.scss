@@ -1,0 +1,26 @@
+.colab-list {
+    &-block {
+        display: flex;
+        max-width: 100%;
+        align-items: center;
+        flex-flow: wrap;
+
+        span{
+            margin-right: 0.5rem;
+        }
+    }
+}
+
+.chip {
+    display: flex;
+    border: 2px solid limegreen;
+    padding: 0.1rem 0.5rem;
+    border-radius: 50px;
+    margin-right: 0.5rem;
+    
+    &:hover{
+        color: white;
+        background-color: green;
+        cursor: pointer;
+    }
+}

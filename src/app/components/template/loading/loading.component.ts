@@ -19,12 +19,10 @@ export class LoadingComponent implements OnInit {
   }
 
   show() {
-    console.log("show", this.load)
     this.load = true;
   }
 
   close() {
-    console.log("close", this.load)
     this.load = false;
   }
 

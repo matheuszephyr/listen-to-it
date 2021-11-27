@@ -1,0 +1,50 @@
+<div class="main-page-card">
+    <h1 class="page-card-title">Novo Usuário</h1>
+    <form [formGroup]="userUpdateForm" novalidate autocomplete="off" (ngSubmit)="saveUser(userUpdateForm.value)">
+        <h3 class="music-form-desc">Preencha os campos obrigatórios para realizar seu cadastro!</h3>
+
+        <mat-form-field appearance="outline" class="username-input">
+            <mat-label>Nome de Usuário</mat-label>
+            <input matInput id="userName" formControlName="userName" type="text" placeholder="Nome de Usuário"
+                name="userName">
+            <mat-error *ngIf="hasError('userName', 'required')">O nome do usuário é obrigatório</mat-error>
+            <mat-error *ngIf="hasError('userName', 'maxlength')">O nome do usuário deve conter no máximo 50 caractéres
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="email-input">
+            <mat-label>E-mail</mat-label>
+            <input matInput id="email" formControlName="email" type="email" placeholder="E-mail" name="email">
+            <mat-error *ngIf="hasError('email', 'required')">O E-mail é obrigatório</mat-error>
+            <mat-error *ngIf="hasError('email', 'email')">Informe um e-mail válido</mat-error>
+            <mat-error *ngIf="hasError('email', 'maxlength')">O E-mail deve conter no máximo 100
+                caractéres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="password-input">
+            <mat-label>Senha</mat-label>
+            <input matInput id="password" formControlName="password" type="password" placeholder="Senha"
+                name="password">
+            <mat-error *ngIf="hasError('password', 'required')">Informe a Senha</mat-error>
+            <mat-error *ngIf="hasError('password', 'maxlength')">A senha deve conter no máximo 100
+                caractéres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="password-input">
+            <mat-label>Repita a Senha</mat-label>
+            <input matInput id="passwordRepeat" formControlName="passwordRepeat" type="password"
+                placeholder="Repita a senha" name="passwordRepeat">
+            <mat-error *ngIf="hasError('passwordRepeat', 'required')">Informe a Senha</mat-error>
+            <mat-error *ngIf="hasError('passwordRepeat', 'maxlength')">A senha deve conter no máximo 100
+                caractéres</mat-error>
+            <mat-error *ngIf="!validPasswordRepeat()">Senhas informadas contém diferenças</mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button [disabled]="!userUpdateForm.valid" class="button-primary">
+            Cadastrar
+        </button>
+    </form>
+
+
+
+</div>

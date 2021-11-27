@@ -5,6 +5,12 @@
             justify-content: space-between;
             flex-flow: wrap;
         }
+        &-info {
+            &-block {
+                flex: auto;
+                padding-right: 1rem;
+            }
+        }
     }
 
     &-info {
@@ -53,12 +59,44 @@
 
     &-like {
         display: flex;
-        align-items: center;
+        align-items: flex-end;
+        margin-top: 2rem;
 
         &-button {
             text-decoration: none;
-            color: blueviolet;
+            color: rgb(132, 0, 255);
             cursor: pointer;
+
+            position: relative;
+            transition-duration: 0.4s;
+
+            &:after {
+                content: "";
+                display: block;
+                position: absolute;
+                border-radius: 4em;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                opacity: 0;
+                transition: all 0.5s;
+                box-shadow: 0 0 10px 40px greenyellow;
+            }
+
+            &:active:after {
+                box-shadow: 0 0 0 0 white;
+                position: absolute;
+                border-radius: 4em;
+                left: 0;
+                top: 0;
+                opacity: 1;
+                transition: 0s;
+            }
+
+            &:not(.unliked) {
+                color: greenyellow;
+            }
         }
 
         &-count {
@@ -73,13 +111,24 @@
             align-items: flex-start;
             justify-content: space-between;
             flex-flow: wrap;
+            margin-top: 1rem;
         }
         &-lyrics {
             flex: auto;
-            max-width: 50%;
+            //max-width: 630px;
         }
-        &-comentary{
-            max-width: 50%;
+        &-comentary {
+            max-width: 640px;
+        }
+    }
+
+    &-colab {
+        &-list {
+            color: white;
+            font-size: 16px;
+            border-top: 2px solid blueviolet;
+            padding-top: 1rem;
+            margin-top: 1rem;
         }
     }
 } // fim da classe principal .music
@@ -88,4 +137,9 @@
     iframe {
         max-width: 100%;
     }
+}
+
+.spotify-iframe {
+    min-width: 50%;
+    max-width: 500px;
 }

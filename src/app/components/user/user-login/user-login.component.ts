@@ -26,7 +26,6 @@ export class UserLoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.loged = this.userService.loged();
-    console.log(this.load)
   }  
 
 
@@ -38,6 +37,7 @@ export class UserLoginComponent implements OnInit {
 
   private executeLogin(email: string, password: string){
     this.load = true;
+    password = btoa(password);
 
     this.userService.login(email,password).subscribe({
       next: (resp) => this.loginUser(resp),

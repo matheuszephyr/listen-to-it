@@ -1,6 +1,8 @@
+import { CollaborationListComponent } from './../../shared/collaboration-list/collaboration-list.component';
+import { CollaborationFilter } from './../../shared/collaboration.model';
 import { LyricsService } from './../lyrics.service';
 import { Lyrics } from './../lyrics.model';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-lyrics-list',
@@ -8,6 +10,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./lyrics-list.component.scss']
 })
 export class LyricsListComponent implements OnInit {
+
+  @ViewChild('app-collaboration-list') ColaborationChild: CollaborationListComponent;
 
   @Input() idMusic: number = 0;
 
@@ -21,8 +25,8 @@ export class LyricsListComponent implements OnInit {
     createdAt: new Date
   };
 
-
-  constructor(private lyricsService: LyricsService) { }
+  constructor(
+    private lyricsService: LyricsService) { }
 
   ngOnInit(): void {
 
@@ -42,7 +46,7 @@ export class LyricsListComponent implements OnInit {
 
     this.lyricsList.forEach((lyric) => {
       if (lyric.id > 0 && lyric.language == language && lyric.lyricsText.length > 0) {
-        this.lyricsView = lyric;
+        this.lyricsView = lyric;        
         return;
       }
     });

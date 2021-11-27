@@ -35,12 +35,14 @@ import { MusicCreateComponent } from './components/music/music-create/music-crea
 import { MusicUpdateComponent } from './components/music/music-update/music-update.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
-import { UserCreateComponent } from './components/user/user-create/user-create.component';
 import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { SubmitListComponent } from './components/submit/submit-list/submit-list.component';
 import { LoadingComponent } from './components/template/loading/loading.component';
 import { LyricsListComponent } from './components/lyrics/lyrics-list/lyrics-list.component';
 import { MusicComentaryComponent } from './components/music/music-comentary/music-comentary.component';
+import { CollaborationListComponent } from './components/shared/collaboration-list/collaboration-list.component';
+import { MessagesPipe } from './components/util/messages.pipe';
+import { UserCreateUpdateComponent } from './components/user/user-create-update/user-create-update.component';
 
 @NgModule({
   declarations: [
@@ -55,12 +57,14 @@ import { MusicComentaryComponent } from './components/music/music-comentary/musi
     MusicUpdateComponent,
     UserLoginComponent,
     UserProfileComponent,
-    UserCreateComponent,
     UserUpdateComponent,
     SubmitListComponent,
     LoadingComponent,
     LyricsListComponent,
-    MusicComentaryComponent
+    MusicComentaryComponent,
+    CollaborationListComponent,
+    MessagesPipe,
+    UserCreateUpdateComponent
   ],
   imports: [
     BrowserModule,

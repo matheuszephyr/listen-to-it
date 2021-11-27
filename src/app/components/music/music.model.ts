@@ -32,3 +32,9 @@ export interface MusicSubmit {
     update: boolean,
     createdAt: Date
 }
+
+export interface MusicFilter{
+    idUser?: number
+    musicName?: string
+    artistName?: string
+}

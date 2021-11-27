@@ -1,6 +1,6 @@
 import { UserService } from './../../user/user.service';
 import { SubmitService } from './../../submit/submit.service';
-import { Messages } from './../../util/messages';
+import { AlertTypes, Messages } from './../../util/messages';
 import { Router } from '@angular/router';
 import { Music, MusicSubmit } from './../music.model';
 import { Component, OnInit } from '@angular/core';
@@ -78,7 +78,7 @@ export class MusicCreateComponent implements OnInit {
     this.musicSubmitTemplate.youtubeLink = musicFormValue.youtubeLink;
 
     this.submitService.insertSubmit(this.musicSubmitTemplate).subscribe(() => {
-      this.messages.showMessage('Musica Enviada!');
+      this.messages.showAlert(AlertTypes.sucess,'Musica Enviada!');
       this.router.navigate(['/music'])
     });
 

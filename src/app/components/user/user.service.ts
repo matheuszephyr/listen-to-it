@@ -40,8 +40,8 @@ export class UserService extends BaseService {
     return this.https.put<User>(url, user);
   }
 
-  login(email: string, password: string){
-    const url = this.baseURL + `?email=${email}&password=${password}`
+  login(email: string, passwordHash: string){
+    const url = this.baseURL + `?email=${email}&passwordHash=${passwordHash}`
     return this.https.get<User[]>(url);
   }
 
@@ -53,9 +53,9 @@ export class UserService extends BaseService {
     let userHide: UserSession = {
       id: user.id,
       email: user.email,
-      name: user.name,
+      name: user.userName,
       userType: user.userType,
-      photo: user.photo,
+      photo: user.image,
       createdAt: user.createdAt,
     }      
 
@@ -86,9 +86,6 @@ export class UserService extends BaseService {
 
   public loged(){
     let result = this.userTokenT.length > 0;
-    console.log(this.userTokenT);
-    console.log(this.userTokenT.length);
-    console.log(result);
     return result;
   }
 
@@ -100,8 +97,6 @@ export class UserService extends BaseService {
     }
 
     let result = this.https.post<any>(this.urlgabs, login);
-    console.log(result)
-
      return  result;
 
   }

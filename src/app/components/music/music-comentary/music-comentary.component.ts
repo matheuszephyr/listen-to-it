@@ -17,17 +17,14 @@ export class MusicComentaryComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log(this.idMusic)
     this.comentaryService.listComentary(this.idMusic).subscribe({
       next: (resp) => {
-        console.log(resp)
         this.comentaryList = resp;
       },
       error: (error) => {
         console.log(error)
       },
       complete: () => {
-        console.log("completed");
       }
     });
 

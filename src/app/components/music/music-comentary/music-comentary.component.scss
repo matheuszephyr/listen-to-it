@@ -6,6 +6,8 @@
         margin: 0.5rem;
         margin-right: 0px;
         margin-top: 0px;
+        max-width: 100%;
+        min-width: fit-content;
     }
 
     &-card {
@@ -15,10 +17,15 @@
         background-color: black;
         margin-bottom: 0.5rem;
 
-        .comentary-date{
-            font-size: 10px;
-            text-align: end;
-            font-weight: 500;
+        .comentary {
+            &-date {
+                font-size: 11px;
+                text-align: end;
+                font-weight: 500;
+            }
+            &-text {
+                font-size: 15px;
+            }
         }
 
         .user {
@@ -28,10 +35,10 @@
                 border-bottom: 1px solid blueviolet;
                 margin-bottom: 0.5rem;
                 padding-bottom: 0.5rem;
-
+                font-size: 17px;
             }
 
-            &-icon{
+            &-icon {
                 margin-right: 5px;
                 font-size: 30px;
             }

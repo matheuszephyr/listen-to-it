@@ -1,4 +1,3 @@
-<ff-alerts></ff-alerts>
 <mat-card class="main-page-card">
     <mat-card-title class="page-card-title">Login</mat-card-title>
     <mat-card-content class="login-card-content">
@@ -17,9 +16,14 @@
                 </mat-form-field>
             </div>
 
-            <button mat-raised-button [disabled]="!formLogin.valid" class="button-primary">
-                Logar
-            </button>
+            <div class="login-button-group">
+                <button mat-raised-button [disabled]="!formLogin.valid" class="button-primary" style="margin-right: 2rem;">
+                    Logar
+                </button>
+                <button type="button" mat-raised-button routerLink="/user/edit/0" class="button-primary">
+                    Cadastrar
+                </button>
+            </div>
 
             <mat-progress-bar class="login-load-bar" *ngIf="load" mode="indeterminate"></mat-progress-bar>
 
@@ -28,8 +32,8 @@
         <mat-card *ngIf="this.loged" class="card-loged">
             <span class="card-loged-icon material-icons">
                 info
-                </span>
-                <p>Você já está logado! Deseja <a class="card-loged-logout" (click)="logOutUser()"> Sair </a> ?</p> 
+            </span>
+            <p>Você já está logado! Deseja <a class="card-loged-logout" (click)="logOutUser()"> Sair </a> ?</p>
         </mat-card>
     </mat-card-content>
 </mat-card>

@@ -1,5 +1,5 @@
-<mat-card class="main-page-card">
-    <mat-card-title class="page-card-title">Enviar Nova Musica</mat-card-title>
+<div class="main-page-card">
+    <h1 class="page-card-title">Enviar Nova Musica</h1>
     <form *ngIf="this.loged" [formGroup]="musicForm" novalidate autocomplete="off" (ngSubmit)="createMusicSubmit(musicForm.value)">
         <h3 class="music-form-desc">Para enviar um música nova, preencha os campos e aguarde sua contribuição ser aprovada!</h3>
 
@@ -35,11 +35,11 @@
         </button>
     </form>    
 
-    <mat-card *ngIf="!this.loged" class="card-login-error">
+    <div *ngIf="!this.loged" class="card-login-error">
         <span class="card-login-error-icon material-icons">
             info
             </span>
             Você precisa realizar login para fazer um envio!
-    </mat-card>
+        </div>
 
-</mat-card>
+</div>

@@ -28,6 +28,10 @@
       </div>
     </div>
 
+    <div *ngIf="this.lyricsView.id > 0" class="lyrics-colab-list">
+      <app-collaboration-list [idLyrics]=this.lyricsView.id></app-collaboration-list>
+    </div>
+
   </div>
 
 </div>
