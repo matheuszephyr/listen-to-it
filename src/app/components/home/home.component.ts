@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from '../user/user.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home',
@@ -13,9 +13,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.testee().subscribe((ress) => {
-      console.log(ress);
-    });
+    // this.userService.testee().subscribe((ress) => {
+    //   console.log(ress);
+    // });
 
   }
 

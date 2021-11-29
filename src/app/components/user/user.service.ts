@@ -9,7 +9,7 @@ import { User, UserSession } from './user.model';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService extends BaseService {
+export class UserServiceTest extends BaseService {
 
   private baseURL = environment.baseUrlApi + "users";
   private userSession: UserSession = { id: 0 };
@@ -40,10 +40,10 @@ export class UserService extends BaseService {
     return this.https.put<User>(url, user);
   }
 
-  login(email: string, passwordHash: string){
-    const url = this.baseURL + `?email=${email}&passwordHash=${passwordHash}`
-    return this.https.get<User[]>(url);
-  }
+  // login(email: string, passwordHash: string){
+  //   const url = this.baseURL + `?email=${email}&passwordHash=${passwordHash}`
+  //   return this.https.get<User[]>(url);
+  // }
 
   generateUserToken(user: User){
     this.encryptUser(user);
@@ -52,11 +52,7 @@ export class UserService extends BaseService {
   private encryptUser(user: User){
     let userHide: UserSession = {
       id: user.id,
-      email: user.email,
-      name: user.userName,
-      userType: user.userType,
-      photo: user.image,
-      createdAt: user.createdAt,
+      userType: user.userType
     }      
 
     let userJson = JSON.stringify(userHide);
@@ -80,14 +76,14 @@ export class UserService extends BaseService {
     this.userSession = newSession;
   }
 
-  public getUserId(){
-    return this.decryptUser().id ?? 0;
-  }
+  // public getUserId(){
+  //   return this.decryptUser().id ?? 0;
+  // }
 
-  public loged(){
-    let result = this.userTokenT.length > 0;
-    return result;
-  }
+  // public loged(){
+  //   let result = this.userTokenT.length > 0;
+  //   return result;
+  // }
 
   public testee(): Observable<any>{
 

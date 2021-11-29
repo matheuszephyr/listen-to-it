@@ -1,3 +1,4 @@
+import { User } from './../user/user.model';
 import { ResponseCode, ServiceResponse } from './service.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -11,12 +12,86 @@ import { isNullOrEmpty, isNullOrUndefined } from '../util/validations';
 })
 export class BaseService {
 
+  private userTokenDev!: User;
+
   private userToken = null;
   private systemToken = null;
   private userExpiration = new Date;
   private systemExpiration = new Date;
 
   constructor(private http: HttpClient) { }
+
+
+  async login(user = null, system = false): Promise<ServiceResponse> {
+    let params = {
+      email: user.email,
+      passwordHash: btoa(user.password)
+    }
+
+    let loginPromisse = new Promise<ServiceResponse>((resolve, rejects) => {
+
+      this.requestGet("users", params, system).subscribe({
+        next: (result) => {
+          if (!isNullOrUndefined(result[0]) && (result[0].id ?? 0 > 0)) {
+            this.setCookie("token", result[0]);
+            let resp: ServiceResponse = {
+              statusCode: ResponseCode.OK,
+              message: "Login realizado com sucesso!",
+              result: true
+            }
+            resolve(resp)
+          }
+          else {
+            this.userTokenDev = null;
+            let respFail: ServiceResponse = {
+              statusCode: ResponseCode.BadRequest,
+              message: "Usuário ou Senha incorreto(s)!",
+              result: false
+            }
+            resolve(respFail);
+          }
+        },
+        error: (error) => {
+          console.log("falha no login", error);
+          rejects(error);
+        }
+      });
+
+    });
+
+    return loginPromisse;
+  }
+
+  setCookie(key: string, object){
+    localStorage.setItem(key, JSON.stringify(object))
+  }
+
+  getCookie(key: string){
+    if(!isNullOrUndefined(localStorage.getItem(key))){
+      return JSON.parse(localStorage.getItem(key));
+    }
+    else{
+      return null;
+    }     
+  }
+
+  public logOut(){
+    localStorage.removeItem("token");
+  }
+
+  public getUserToken(): User{    
+    return this.getCookie("token");
+  }
+
+  public getUserId(): number{
+    let userToken = this.getUserToken();
+    return userToken?.id ?? 0;
+  }
+
+  public loged(): boolean{
+    return this.getUserId() > 0;
+  }
+
 
   executeLogin(user = null, system = false): any {
 
@@ -46,6 +121,8 @@ export class BaseService {
 
   }
 
+
+
   requestPost(action: string, bodyParams = null, system = false): Observable<any> {
     let options = this.getCommomOptions(system, true);
     return this.http.post<any>(environment.baseUrlApiProd + action, bodyParams, options);
@@ -70,7 +147,7 @@ export class BaseService {
       stringQuery = "?" + this.objectToQueryString(queryParams);
     }
 
-    return this.http.post<any>(environment.baseUrlApiProd + action + stringQuery, bodyParams, options);
+    return this.http.put<any>(environment.baseUrlApiProd + action + stringQuery, bodyParams, options);
   }
 
   requestDelete(action: string, queryParams = null, system = false): Observable<any> {
@@ -88,12 +165,12 @@ export class BaseService {
     let qs = "";
     Object.keys(object)
       .map(key => {
-        if (!isNullOrEmpty(object[key])){
+        if (!isNullOrEmpty(object[key])) {
           qs += `${key}=${object[key]}&`
         }
       });
-      qs = qs.slice(0,-1);
-      console.log("qs:",qs);
+    qs = qs.slice(0, -1);
+    console.log("qs:", qs);
     return qs;
   }
 

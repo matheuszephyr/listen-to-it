@@ -1,11 +1,11 @@
-import { UserService } from './../../user/user.service';
-import { SubmitService } from './../../submit/submit.service';
 import { AlertTypes, Messages } from './../../util/messages';
 import { Router } from '@angular/router';
-import { Music, MusicSubmit } from './../music.model';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Injectable } from '@angular/core';
+import { UserService } from '../../services/user.service';
+import { Submit, SubmitType } from '../../submit/submit.model';
+import { SubmitService } from '../../services/submit.service';
 
 
 @Component({
@@ -18,23 +18,18 @@ import { Injectable } from '@angular/core';
 })
 export class MusicCreateComponent implements OnInit {
 
-  musicForm!: FormGroup; 
+  musicForm!: FormGroup;
 
-  musicSubmitTemplate: MusicSubmit = {
-    idUser: 2,
-    lyrics: "",
-    lyricsLanguage: "",
-    submitType: "",
-    update: false,
+  musicSubmitTemplate: Submit = {
+    idUser: 0,
+    submitType: SubmitType[SubmitType.Music],
     musicName: "",
     artistName: "",
-    spotifyLink: "",
-    youtubeLink: "",
-    albumName: "",
-    officialLink: "",
-    idAlbum: 0,
+    spotifyCode: "",
+    youtubeCode: "",
+    isUpdate: false,
     createdAt: new Date
-  };  
+  };
 
   loged = false;
 
@@ -43,24 +38,25 @@ export class MusicCreateComponent implements OnInit {
     private messages: Messages,
     private submitService: SubmitService,
     private userService: UserService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
 
-    const regexUrl = "/^(http[s])/";    
+    const regexUrl = "/^(http[s])/";
+    this.extractExternalCode("https://www.youtube.com/watch?v=IGxG_EzDHZY&ab_channel=Kauf")
 
     this.loged = this.userService.loged();
 
     this.musicForm = new FormGroup({
-      musicName: new FormControl('',[Validators.required, Validators.maxLength(120)]),
-      artistName: new FormControl('',[Validators.required, Validators.maxLength(120)]),
-      spotifyLink: new FormControl('',[Validators.required, Validators.maxLength(300)]),
-      youtubeLink: new FormControl('',[Validators.maxLength(300)])
+      musicName: new FormControl('', [Validators.required, Validators.maxLength(120)]),
+      artistName: new FormControl('', [Validators.required, Validators.maxLength(120)]),
+      spotifyLink: new FormControl('', [Validators.maxLength(300)]),
+      youtubeLink: new FormControl('', [Validators.maxLength(300)])
     });
 
   }
 
-  public hasError = (controlName: string, errorName: string) =>{
+  public hasError = (controlName: string, errorName: string) => {
     return this.musicForm.controls[controlName].hasError(errorName);
   }
 
@@ -70,19 +66,60 @@ export class MusicCreateComponent implements OnInit {
     }
   }
 
-  private executeMusicSubmit(musicFormValue: any): void{
+  private executeMusicSubmit(musicFormValue: any): void {
 
+    this.musicSubmitTemplate.idUser = this.userService.getUserId();
     this.musicSubmitTemplate.musicName = musicFormValue.musicName;
     this.musicSubmitTemplate.artistName = musicFormValue.artistName;
-    this.musicSubmitTemplate.spotifyLink = musicFormValue.spotifyLink;
-    this.musicSubmitTemplate.youtubeLink = musicFormValue.youtubeLink;
+    this.musicSubmitTemplate.spotifyCode = this.validExternalCode(musicFormValue.spotifyLink, "spotify.com/track");
+    this.musicSubmitTemplate.youtubeCode = this.validExternalCode(musicFormValue.youtubeLink, "youtube.com/watch");
 
-    this.submitService.insertSubmit(this.musicSubmitTemplate).subscribe(() => {
-      this.messages.showAlert(AlertTypes.sucess,'Musica Enviada!');
-      this.router.navigate(['/music'])
+    if(this.musicSubmitTemplate.spotifyCode == "invalid" || this.musicSubmitTemplate.youtubeCode == "invalid"){
+      this.messages.showAlert(AlertTypes.warning, "Um dos links enviados não é válido!")
+      return;
+    }
+
+    this.submitService.insertSubmit(this.musicSubmitTemplate).subscribe({
+      next: (resp) => {
+        this.messages.showAlert(AlertTypes.sucess, 'Música enviada com sucesso!');
+        this.router.navigate(['/music'])
+      },
+      error: (error) => {
+        this.messages.showAlert(AlertTypes.danger, 'Falha ao realizar envio. Tente novamente mais tarde!');
+        console.log(error);
+      }
     });
 
-    this.messages.showMessage('sucesoo mlk!!!');
-  }  
+  }
+
+  private validExternalCode(value: string, codeType: string): string {
+    if (value != undefined && value != null && value != "") {
+      if (value.includes("https://") || value.includes("http://")) {
+        if (value.includes(codeType)) {
+          return this.extractExternalCode(value);
+        }
+      }
+      return "invalid";
+    }
+    else {
+      return null;
+    }
+  }
+
+  //EXTRAI O CODIGO A PARTIR DOS LINKS
+  private extractExternalCode(value: string): string {
+    if (value.includes("spotify")) {
+      value = value.replace("https://open.spotify.com/track/", "");
+      let siIndex = value.indexOf("?si=");
+      value = value.slice(0, siIndex);
+      return value;
+    }
+    if (value.includes("youtube")) {
+      value = value.replace("https://www.youtube.com/watch?v=", "");
+      let siIndex = value.indexOf("&");
+      value = value.slice(0, siIndex);
+      return value;
+    }
+  }
 
 }

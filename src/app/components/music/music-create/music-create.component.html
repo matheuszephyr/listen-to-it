@@ -33,13 +33,15 @@
         <button mat-raised-button [disabled]="!musicForm.valid" class="button-primary">
             Enviar Musica
         </button>
-    </form>    
-
-    <div *ngIf="!this.loged" class="card-login-error">
-        <span class="card-login-error-icon material-icons">
+    </form> 
+    
+    <div *ngIf="!this.loged" class="main-card-error">
+        <span class="main-card-icon material-icons">
             info
-            </span>
-            Você precisa realizar login para fazer um envio!
-        </div>
+        </span>
+        <span>
+            É necessário realizar login para fazer um envio!
+        </span>
+    </div>
 
 </div>

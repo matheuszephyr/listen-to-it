@@ -1,3 +1,4 @@
+import { SubmitListComponent } from './components/submit/submit-list/submit-list.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
 import { UserCreateUpdateComponent } from './components/user/user-create-update/user-create-update.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
@@ -36,13 +37,17 @@ const routes: Routes = [
     component: UserLoginComponent
   },
   {
-    path: "user/edit/:id",
+    path: "user/edit",
     component: UserCreateUpdateComponent
   },
   {
-    path: "user/profile/:id",
+    path: "user/profile",
     component: UserProfileComponent
-  }
+  },
+  {
+    path: "submits",
+    component: SubmitListComponent
+  }  
 ];
 
 @NgModule({

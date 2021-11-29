@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import url('https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lobster+Two&display=swap");
 
 $primary-color: blueviolet;
 $secondary-color: #212121;
@@ -19,57 +19,96 @@ body {
     background: #ccc;
     overflow: hidden;
     transition: height 200ms;
-  }
+}
 
-.app{
-    &-logo{
+.app {
+    &-logo {
         max-width: 50px;
     }
 
-    &-header{
+    &-header {
         min-height: 70px;
     }
 
-    &-container{
+    &-container {
         display: flex;
         flex-flow: column;
         height: 100%;
     }
 
-    &-footer{
+    &-footer {
         margin-top: auto;
     }
 }
 
-.main{
-    &-page-header{
+.main {
+    &-page-header {
         background-color: $primary-color;
     }
 
-    &-page-footer{
+    &-page-footer {
         background-color: $primary-color;
-    } 
+    }
 
-    &-page-card{
+    &-page-card {
         margin: 1rem;
         padding: 1rem;
         background-color: #212121;
         color: white;
         border-radius: 10px;
 
-        .page-card-title{
-            font-family: 'Lobster Two', cursive;
+        .page-card-title {
+            font-family: "Lobster Two", cursive;
             margin-bottom: 1.5rem;
             font-size: 2rem;
         }
     }
 
-    
+    &-card {
+        &-error {
+            border: 2px solid rgb(255 0 0 / 51%);
+            border-radius: 5px;
+            padding: 1rem;
+            background-color: rgb(255 0 0 / 51%);
+            box-shadow: 0.5em 0.5em 0.5em black;
+            font-size: 1rem;
+            align-items: center;
+            display: flex;
+        }
+
+        &-sucess {
+            border: 2px solid rgba(0, 255, 13, 0.548);
+            border-radius: 5px;
+            padding: 1rem;
+            background-color: rgba(0, 255, 13, 0.548);
+            box-shadow: 0.5em 0.5em 0.5em black;
+            font-size: 1rem;
+            align-items: center;
+            display: flex;
+        }
+
+        &-icon {
+            margin-right: 1rem;
+        }
+    }
 }
 
-.m{
-    &1{
+.m {
+    &0 {
+        margin: 0px !important;
+    }
+    &1 {
         margin: 1rem;
+    }
+}
+
+.card-login-error {
+    display: flex;
+    align-items: center;
+    background-color: red;
+
+    &-icon {
+        margin-right: 1rem;
     }
 }
 
@@ -95,18 +134,24 @@ body {
     }
 }
 
-.button{
-    &-primary{
-        background-color: $primary-color;
+.button {
+    &-primary {
+        background-color: blueviolet;
         color: white;
+        cursor: pointer;
+        padding: 0.7rem;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 5px;
+        box-shadow: 2px 1px 1px black;
 
-        &:hover{
+        &:hover {
             background-color: rgb(132, 0, 255);
         }
     }
 }
 
-mat-spinner{
+mat-spinner {
     position: fixed !important;
     width: 100% !important;
     height: 100% !important;
@@ -115,7 +160,7 @@ mat-spinner{
     align-items: center !important;
     display: flex !important;
 
-    svg{
+    svg {
         position: relative !important;
     }
 }
@@ -147,11 +192,22 @@ mat-spinner{
     border-radius: 10px;
 
     &:before {
-        content: '';
-        background: linear-gradient(45deg, #6200ff, #5900ff, #8400ff, #a200ff, #6f00ff, #0026ff, #7a00ff, #a200ff, #4c00ff);
+        content: "";
+        background: linear-gradient(
+            45deg,
+            #6200ff,
+            #5900ff,
+            #8400ff,
+            #a200ff,
+            #6f00ff,
+            #0026ff,
+            #7a00ff,
+            #a200ff,
+            #4c00ff
+        );
         position: absolute;
         top: -2px;
-        left:-2px;
+        left: -2px;
         background-size: 400%;
         z-index: -1;
         filter: blur(5px);
@@ -159,13 +215,13 @@ mat-spinner{
         height: calc(100% + 4px);
         animation: glowing 20s linear infinite;
         opacity: 0;
-        transition: opacity .3s ease-in-out;
+        transition: opacity 0.3s ease-in-out;
         border-radius: 10px;
     }
 }
 
 .glow-on-hover:active {
-    color: #000
+    color: #000;
 }
 
 .glow-on-hover:active:after {
@@ -178,7 +234,7 @@ mat-spinner{
 
 .glow-on-hover:after {
     z-index: -1;
-    content: '';
+    content: "";
     position: absolute;
     width: 100%;
     height: 100%;
@@ -189,8 +245,14 @@ mat-spinner{
 }
 
 @keyframes glowing {
-    0% { background-position: 0 0; }
-    50% { background-position: 400% 0; }
-    100% { background-position: 0 0; }
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
 }
 /*#endregion Hover Glow Effect*/

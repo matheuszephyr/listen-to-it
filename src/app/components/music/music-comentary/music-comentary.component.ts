@@ -1,6 +1,8 @@
 import { MusicComentary } from './../comentary.model';
 import { ComentaryService } from './../../services/comentary.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { TOUCH_BUFFER_MS } from '@angular/cdk/a11y/input-modality/input-modality-detector';
+import { isNullOrUndefined } from '../../util/validations';
 
 @Component({
   selector: 'app-music-comentary',
@@ -28,6 +30,10 @@ export class MusicComentaryComponent implements OnInit {
       }
     });
 
+  }
+
+  haveComent(){
+    return !isNullOrUndefined(this.comentaryList) && this.comentaryList.length > 0;
   }
 
 }

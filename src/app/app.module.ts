@@ -22,6 +22,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from "@angular/material/table";
 
 //MODULOS DE TERCEIROS
 import { AlertModule } from '@full-fledged/alerts';
@@ -83,6 +84,7 @@ import { UserCreateUpdateComponent } from './components/user/user-create-update/
     MatInputModule,
     ReactiveFormsModule,
     MatProgressBarModule,
+    MatTableModule,
     AlertModule.forRoot({maxMessages: 5, timeout: 5000, positionY: "top"})
   ],
   providers: [],

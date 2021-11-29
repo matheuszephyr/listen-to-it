@@ -15,24 +15,6 @@ export interface Music {
     updatedAt?: Date
 }
 
-export interface MusicSubmit {
-    id?: number,
-    idMusic?: number,
-    idAlbum?: number,
-    idUser: number,
-    musicName: string,
-    artistName: string,
-    albumName: string,
-    lyrics: string,
-    lyricsLanguage: string,
-    spotifyLink: string,
-    youtubeLink: string,
-    officialLink: string,
-    submitType: string,
-    update: boolean,
-    createdAt: Date
-}
-
 export interface MusicFilter{
     idUser?: number
     musicName?: string

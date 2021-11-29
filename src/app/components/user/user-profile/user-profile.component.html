@@ -1,1 +1,57 @@
-<p>user-profile works!</p>
+<div class="main-page-card">
+    <h1 class="page-card-title">Perfil</h1>
+
+    <div class="user-profile-container">
+
+        <div *ngIf="(this.userModel.id ?? 0 > 0)" class="user-profile-info">
+
+            <div class="user-profile-info-block">
+                <div class="user-info">
+                    <span class="user-info-icon material-icons md-18">
+                        person
+                    </span>
+                    <span class="user-info-value">{{userModel.userName}}</span>
+                </div>
+                <div class="user-info">
+                    <span class="user-info-icon material-icons md-18">
+                        alternate_email
+                    </span>
+                    <span class="user-info-value">{{userModel.email}}</span>
+                </div>
+                <div class="user-info">
+                    <span class="user-info-icon material-icons md-18">
+                        admin_panel_settings
+                    </span>
+                    <span class="user-info-value">{{userModel.userType}}</span>
+                </div>
+                <div class="user-info">
+                    <span class="user-info-icon material-icons md-18">
+                        diamond
+                    </span>
+                    <span class="user-info-value">{{userModel.userScore}}</span>
+                </div>
+            </div>
+
+            <div class="login-button-group">
+                <button type="button" routerLink="/user/edit" class="button-primary"
+                    style="margin-right: 2rem;">
+                    Alterar
+                </button>
+                <button type="button" (click)="this.logOut()" class="button-primary">
+                    Sair
+                </button>
+            </div>
+        </div>
+
+        <div *ngIf="!(this.userModel.id ?? 0 > 0)" class="main-card-error">
+            <span class="main-card-icon material-icons">
+                info
+            </span>
+            <span>Você precisa realizar login para visualizar seu perfil!</span>
+        </div>
+
+    </div>
+
+
+
+</div>

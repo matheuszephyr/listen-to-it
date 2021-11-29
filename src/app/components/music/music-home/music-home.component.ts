@@ -1,4 +1,4 @@
-import { UserService } from './../../user/user.service';
+import { UserService } from './../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Music } from './../music.model';
 import { MusicService } from './../music.service';
@@ -15,8 +15,8 @@ export class MusicHomeComponent implements OnInit {
   musicModel: Music = {
     musicName: "Carregando...",
     artistName: "Carregando...",
-    spotifyCode: "",
-    youtubeCode: "",
+    spotifyCode: null,
+    youtubeCode: null,
     albumName: "Carregando...",
     commentCount: 0,
     haveLyrics: false,
@@ -44,19 +44,18 @@ export class MusicHomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.idMusic = Number.parseInt(this.route.snapshot.paramMap.get('id') ?? "");
-    this.userLoged = this.userService.loged();
-
+    
     this.musicService.getMusicById(this.idMusic).subscribe(musicResult => {
 
       this.musicModel = musicResult;
       this.actionLayout.likeStatus = this.musicModel.userLiked ? "liked" : "unliked";
 
       //SETA O LINK DOS IFRAMES
-      if (this.musicModel.youtubeCode.length > 0) {
+      if (this.musicModel.youtubeCode != null) {
         let youtubeFrame = document.getElementById('youtubeframe');
         youtubeFrame.setAttribute('src', 'https://www.youtube.com/embed/' + this.musicModel.youtubeCode);
       }
-      if (this.musicModel.spotifyCode.length > 0) {
+      if (this.musicModel.spotifyCode != null) {
         let spotifyFrame = document.getElementById('spotifyframe');
         spotifyFrame.setAttribute('src', 'https://open.spotify.com/embed/track/' + this.musicModel.spotifyCode);
       }     
@@ -65,11 +64,11 @@ export class MusicHomeComponent implements OnInit {
   }
 
   likeMusic(userLiked: boolean){ 
-    console.log(this.userLoged);
-    if(!this.userLoged)
+    if(!this.userLoged){
       this.message.showAlert(AlertTypes.warning, "Você precisa realizar login para curtir!")
+      return;
+    }
   
-
     if(userLiked){
       this.musicModel.likeCount --;
       this.actionLayout.likeStatus = "unliked"

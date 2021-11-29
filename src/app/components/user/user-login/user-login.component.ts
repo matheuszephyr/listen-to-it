@@ -1,8 +1,9 @@
 import { User } from './../user.model';
-import { UserService } from './../user.service';
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AlertService } from '@full-fledged/alerts';
+import { AlertTypes, Messages } from '../../util/messages';
+import { UserService } from '../../services/user.service';
+import { ResponseCode } from '../../services/service.model';
 
 @Component({
   selector: 'app-user-login',
@@ -20,48 +21,46 @@ export class UserLoginComponent implements OnInit {
   loged = false;
 
   constructor(
-    private alert: AlertService, 
+    private message: Messages, 
     private userService: UserService
     ) { }  
 
   ngOnInit(): void {
-    this.loged = this.userService.loged();
+    this.loged = this.userService.loged();    
   }  
 
 
   public login = (formLoginValue: any) => {
     if(this.formLogin.valid){
-      this.executeLogin(formLoginValue.email, formLoginValue.password);
+      this.load = true;
+
+      let user = {
+        email: formLoginValue.email,
+        password: formLoginValue.password
+      }
+
+      this.userService.login(user, false).then((resp) => {
+        console.log(resp)
+        if(resp.statusCode == ResponseCode.OK){
+          this.message.showAlert(AlertTypes.sucess, "Login efetuado com sucesso!");
+          this.loged = true;   
+          this.load = false;       
+        }
+        else{
+          this.message.showAlert(AlertTypes.danger, "Usuário ou senha incorretos.");
+        }
+      }).catch((error) => {
+        this.message.showAlert(AlertTypes.danger, "Falha ao realizar login!")
+      }).finally(() => {
+        this.load = false;
+      });
     }
-  }
-
-  private executeLogin(email: string, password: string){
-    this.load = true;
-    password = btoa(password);
-
-    this.userService.login(email,password).subscribe({
-      next: (resp) => this.loginUser(resp),
-      error: (error) => this.alert.danger("Falha ao realizar login. Tente novamente mais tarde!"),
-      complete: () => this.load = false
-    });     
-  }
-
-  private loginUser(user: User[]){
-
-    if(user != null && user.length > 0){
-      this.userService.generateUserToken(user[0]);
-      this.alert.success("Login efetuado com sucesso!");
-      this.loged = true;
-    }
-    else{
-      this.alert.danger("Usuário ou senha incorretos.");
-    }
-    
-  }
+  }  
 
   public logOutUser(){
-    this.userService.resetToken();
-    window.location.reload();
+    this.userService.logOut();  
+    this.loged = false;
+    this.message.showAlert(AlertTypes.sucess, "Sessão finalizada com sucesso!");
   }
 
 }

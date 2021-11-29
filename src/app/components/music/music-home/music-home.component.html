@@ -22,19 +22,20 @@
                     <span class="music-info-icon material-icons md-18">
                         library_music
                     </span>
-                    <span class="music-info-value">{{musicModel.albumName}}</span>
+                    <span *ngIf="this.musicModel.albumName != null" class="music-info-value">{{musicModel.albumName}}</span>
+                    <span *ngIf="!(this.musicModel.albumName != null)" class="music-info-value button-primary">Enviar Album</span>
                 </div>
 
                 <div class="music-info music-link">
                     <span class="music-info-icon material-icons md-18">
                         share
                     </span>
-                    <span class="button">
+                    <span *ngIf="this.musicModel.spotifyCode != null" class="button">
                         <a href="https://open.spotify.com/track/{{musicModel.spotifyCode}}" target="_blank">
                             <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
                         </a>
                     </span>
-                    <span class="button">
+                    <span *ngIf="this.musicModel.youtubeCode != null" class="button">
                         <a href="https://www.youtube.com/watch?v={{musicModel.youtubeCode}}" target="_blank">
                             <img class="icon" src="assets/img/youtube-icon.png" alt="Youtube">
                         </a>
@@ -66,7 +67,7 @@
         </div>
 
         <div class="music-component-block">
-            <app-lyrics-list class="music-component-lyrics" [idMusic]="this.idMusic"></app-lyrics-list>
+            <app-lyrics-list *ngIf="this.musicModel.haveLyrics" class="music-component-lyrics" [idMusic]="this.idMusic"></app-lyrics-list>
             <app-music-comentary class="music-component-comentary" [idMusic]="this.idMusic"></app-music-comentary>
         </div>
 

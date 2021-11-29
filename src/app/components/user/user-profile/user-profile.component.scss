@@ -1,0 +1,30 @@
+.user {
+    &-profile {
+        &-container {
+            display: flex;
+            justify-content: space-between;
+            flex-flow: wrap;
+        }
+        &-info {
+            &-block {
+                flex: auto;
+                padding-right: 1rem;
+            }
+        }
+    }
+
+    &-info {
+        display: flex;
+        margin-bottom: 0.5rem;
+        align-items: center;
+
+        &-icon {
+            margin-right: 0.5rem;
+            color: blueviolet;
+        }
+
+        &-value {
+            font-size: 18px;
+        }
+    }
+}

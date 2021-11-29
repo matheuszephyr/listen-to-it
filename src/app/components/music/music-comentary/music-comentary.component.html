@@ -1,4 +1,4 @@
-<div class="comentary-container">
+<div *ngIf="haveComent()" class="comentary-container">
 
     <div *ngFor="let comentary of this.comentaryList" class="comentary-card">
         <div class="user-block">

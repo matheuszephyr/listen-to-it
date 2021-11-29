@@ -20,8 +20,10 @@
     "@angular/platform-browser-dynamic": "~13.0.0",
     "@angular/router": "~13.0.0",
     "@full-fledged/alerts": "^13.0.0",
+    "@material-ui/core": "^4.12.3",
     "@material/progress-indicator": "^13.0.0",
     "@material/tab-bar": "^13.0.0",
+    "material-table": "^1.69.3",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

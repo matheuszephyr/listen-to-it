@@ -4,7 +4,6 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 //MODELS
-import { environment } from 'src/environments/environment';
 import { User } from '../user/user.model';
 
 @Injectable({
@@ -14,9 +13,11 @@ export class UserService extends BaseService{
 
   baseAction = "users";
 
-  constructor(private https: HttpClient) {
+  constructor(
+    private https: HttpClient
+    ) {
     super(https)
-  }
+  }   
 
   insertUser(user: User): Observable<User> {
     return this.requestPost(this.baseAction, user);
@@ -27,6 +28,10 @@ export class UserService extends BaseService{
   }
 
   getUserById(id: number = 0, system = false): Observable<User> {
+    if(!system){
+      id = this.getUserId();
+    }
+
     const url = `${this.baseAction}/${id}`;
     return this.requestGet(url, null, system);
   }
@@ -35,4 +40,6 @@ export class UserService extends BaseService{
     const url = `${this.baseAction}/${user.id}`;
     return this.requestPut(url, null, user);
   }
+
+
 }

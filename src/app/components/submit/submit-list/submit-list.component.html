@@ -1,1 +1,44 @@
-<p>submit-list works!</p>
+<div class="main-page-card">
+    <h1 class="page-card-title">Envios</h1>
+
+    <div class="submit-list-container">
+
+        <div class="submit-list-table">
+
+            <mat-table class="lessons-table mat-elevation-z8" [dataSource]="submitList">
+ 
+                <ng-container matColumnDef="musicName">
+                    <mat-header-cell *matHeaderCellDef>Música</mat-header-cell>
+                    <mat-cell class="description-cell" *matCellDef="let submit">{{submit.musicName}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="artistName">
+                    <mat-header-cell *matHeaderCellDef>Artista</mat-header-cell>
+                    <mat-cell class="duration-cell" *matCellDef="let submit">{{submit.artistName}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="status">
+                    <mat-header-cell *matHeaderCellDef>Status</mat-header-cell>
+                    <mat-cell class="duration-cell" *matCellDef="let submit">{{submit.status}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="submitType">
+                    <mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
+                    <mat-cell class="duration-cell" *matCellDef="let submit">{{submit.submitType}}</mat-cell>
+                </ng-container>
+
+                <ng-container matColumnDef="createdAt">
+                    <mat-header-cell *matHeaderCellDef>Data</mat-header-cell>
+                    <mat-cell class="duration-cell" *matCellDef="let submit">{{ submit.createdAt | date:'dd/MM/yyyy hh:mm'}}</mat-cell>
+                </ng-container>                
+
+                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+                <mat-row class="table-row" *matRowDef="let row; columns: displayedColumns" (click)="onRowClicked(row)"></mat-row>
+
+            </mat-table>
+
+        </div>
+
+    </div>
+</div>
