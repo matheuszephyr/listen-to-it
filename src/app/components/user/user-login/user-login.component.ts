@@ -19,6 +19,7 @@ export class UserLoginComponent implements OnInit {
 
   load = false;
   loged = false;
+  hide = true;
 
   constructor(
     private message: Messages, 

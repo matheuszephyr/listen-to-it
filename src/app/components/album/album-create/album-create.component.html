@@ -1,0 +1,55 @@
+<div class="main-page-card">
+    <h1 class="page-card-title">Enviar Novo Album</h1>
+    <form *ngIf="this.loged" [formGroup]="albumForm" novalidate autocomplete="off"
+        (ngSubmit)="createAlbumSubmit(albumForm.value)">
+        <h3 class="album-form-desc">Para enviar um novo album, preencha os campos e aguarde sua contribuição ser
+            aprovada!</h3>
+
+        <div class="main-form-container album-form-fields">
+
+            <mat-form-field appearance="outline" class="album-input">
+                <mat-label>Nome do Album</mat-label>
+                <input matInput id="albumName" formControlName="albumName" type="text" placeholder="Nome do Album"
+                    name="albumName">
+                <mat-error *ngIf="hasError('albumName', 'required')">O nome do album é obrigatório</mat-error>
+                <mat-error *ngIf="hasError('albumName', 'maxlength')">O nome do album deve conter no máximo 100
+                    caractéres</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="album-input">
+                <mat-label>Ano</mat-label>
+                <input matInput id="albumYear" formControlName="albumYear" maxlength="4" type="text"
+                    placeholder="Ex: 2019" name="albumYear">
+                <mat-error *ngIf="hasError('albumYear', 'required')">O ano do album é obrigatório</mat-error>
+                <mat-error *ngIf="hasError('albumYear', 'maxlength')">O ano do album deve conter no máximo 4 caractéres
+                </mat-error>
+                <mat-error *ngIf="hasError('albumYear', 'minlength')">O ano do album deve conter no mínimo 4 caractéres
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="album-input">
+                <mat-label>Link Spotify</mat-label>
+                <input matInput id="spotifyLink" formControlName="spotifyLink" type="text"
+                    placeholder="Link do Album no Spotify" name="spotifyLink">
+                <mat-error *ngIf="hasError('spotifyLink', 'required')">O link do spotify é obrigatório</mat-error>
+                <mat-error *ngIf="hasError('spotifyLink', 'maxlength')">O link do spotify deve conter no máximo 150
+                    caractéres</mat-error>
+            </mat-form-field>
+
+        </div>
+
+        <button mat-raised-button [disabled]="!albumForm.valid" class="button-primary">
+            Enviar
+        </button>
+    </form>
+
+    <div *ngIf="!this.loged" class="main-card-error">
+        <span class="main-card-icon material-icons">
+            info
+        </span>
+        <span>
+            É necessário realizar login para fazer um envio!
+        </span>
+    </div>
+
+</div>

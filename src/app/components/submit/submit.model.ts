@@ -1,19 +1,21 @@
 export interface Submit {
-    id?: number,
-    idMusic?: number,
-    idAlbum?: number,
-    idUser: number,
-    idArtist?: number,
-    idLyrics?: number,
-    musicName?: string,
-    artistName?: string,
-    albumName?: string,
-    lyrics?: string,
-    lyricsLanguage?: string,
-    spotifyCode?: string,
-    youtubeCode?: string,
-    submitType: string,
-    isUpdate: boolean,
+    id?: number
+    idMusic?: number
+    idAlbum?: number
+    idUser: number
+    idArtist?: number
+    idLyrics?: number
+    musicName?: string
+    artistName?: string
+    albumName?: string
+    albumYear?: string
+    lyricsText?: string
+    lyricsLanguage?: string
+    spotifyCode?: string
+    youtubeCode?: string
+    status: string
+    submitType: string
+    isUpdate: boolean
     createdAt: Date
 }
 
@@ -23,3 +25,10 @@ export enum SubmitType {
     Album,
     Lyrics
 } 
+
+export enum SubmitStatus{
+    Analise,
+    Processando,
+    Aprovado,    
+    Recusado
+}

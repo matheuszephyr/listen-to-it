@@ -1,8 +1,7 @@
 import { CollaborationListComponent } from './../../shared/collaboration-list/collaboration-list.component';
-import { CollaborationFilter } from './../../shared/collaboration.model';
-import { LyricsService } from './../lyrics.service';
 import { Lyrics } from './../lyrics.model';
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { LyricsService } from '../../services/lyrics.service';
 
 @Component({
   selector: 'app-lyrics-list',
@@ -24,13 +23,14 @@ export class LyricsListComponent implements OnInit {
     idMusic: 0,
     createdAt: new Date
   };
+  loged = false;
 
   constructor(
     private lyricsService: LyricsService) { }
 
   ngOnInit(): void {
 
-    this.lyricsService.getLyricsByFilter(this.idMusic).subscribe(returnLyrics => {
+    this.lyricsService.getLyricsByFilter({ idMusic: this.idMusic }, true).subscribe(returnLyrics => {
 
       returnLyrics.forEach((lyric) => {
         let jsonLyric = JSON.stringify(lyric.lyricsText);

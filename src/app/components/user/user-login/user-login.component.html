@@ -8,11 +8,16 @@
                     <input id="email" name="email" type="text" matInput placeholder="E-mail" formControlName="email">
                 </mat-form-field>
             </div>
-            <div>
+            <div class="password-input">
                 <mat-form-field class="login-input" appearance="outline">
-                    <mat-label>Senha</mat-label>
-                    <input id="password" name="password" type="password" matInput placeholder="Senha"
-                        formControlName="password">
+                    <mat-label>Senha</mat-label>                        
+                        <input style="align-items: center;" id="password" name="password"
+                            [type]="hide ? 'password' : 'text'" matInput placeholder="Senha" formControlName="password">
+
+                        <button type="button" class="password-hide-button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide">
+                            <mat-icon class="material-icons">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
                 </mat-form-field>
             </div>
 
@@ -34,9 +39,10 @@
                 <span class="main-card-icon material-icons">
                     info
                 </span>
-                <p class="m0">Você já está logado! Deseja <a class="card-loged-logout" (click)="logOutUser()"> Sair </a> ?</p>
+                <p class="m0">Você já está logado! Deseja <a class="card-loged-logout button-hover-primary"
+                        (click)="logOutUser()"> Sair </a> ?</p>
             </div>
-            
+
         </div>
     </div>
 </div>

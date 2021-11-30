@@ -1,7 +1,9 @@
+import { Router } from '@angular/router';
 import { SubmitService } from './../../services/submit.service';
 import { Component, OnInit } from '@angular/core';
 import { AlertTypes, Messages } from '../../util/messages';
 import { Submit } from '../submit.model';
+import { UserType } from '../../user/user.model';
 
 
 @Component({
@@ -16,14 +18,22 @@ export class SubmitListComponent implements OnInit {
 
   constructor(
     private submitService: SubmitService,
-    private message: Messages
+    private message: Messages,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
 
-    this.submitService.listSubmits().subscribe({
+    let filter = null;
+
+    if(this.submitService.getUserType() != UserType.Admin){
+      filter = {
+        idUser: this.submitService.getUserId()
+      } 
+    }
+
+    this.submitService.listSubmits(filter).subscribe({
       next: (resp) => {
-        console.log(resp)
         this.submitList = resp;
       },
       error: (error) => {
@@ -35,7 +45,12 @@ export class SubmitListComponent implements OnInit {
   }
 
   onRowClicked(row) {
-    console.log('Row clicked: ', row);
+    if(this.submitService.getUserType() != UserType.Admin){
+      return;
+    }
+
+    let url = "/submits/read/" + row.id;
+    this.router.navigate([url])
   }
 
 }

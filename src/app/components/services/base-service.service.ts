@@ -1,4 +1,4 @@
-import { User } from './../user/user.model';
+import { User, UserType } from './../user/user.model';
 import { ResponseCode, ServiceResponse } from './service.model';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
@@ -74,13 +74,13 @@ export class BaseService {
       return null;
     }     
   }
-
+  
+  private getUserToken(): User{    
+    return this.getCookie("token");
+  }
+  
   public logOut(){
     localStorage.removeItem("token");
-  }
-
-  public getUserToken(): User{    
-    return this.getCookie("token");
   }
 
   public getUserId(): number{
@@ -92,36 +92,38 @@ export class BaseService {
     return this.getUserId() > 0;
   }
 
-
-  executeLogin(user = null, system = false): any {
-
-    this.http.post<ServiceResponse>(environment.baseUrlApiProd + "login", user).subscribe({
-      next: (resp) => {
-        if (resp.statusCode == ResponseCode.OK) {
-          if (system) {
-            this.systemToken = resp.result;
-          }
-          else {
-            this.userToken = resp.result;
-          }
-        }
-        else
-          return resp;
-      },
-      error: (error) => {
-        let response: ServiceResponse = {
-          statusCode: ResponseCode.InternalServerError,
-          message: String(error)
-        }
-        return response;
-      },
-      complete: () => {
-      }
-    });
-
+  public getUserType(): UserType{
+    let t: UserType = UserType[this.getUserToken().userType];
+    return t;
   }
 
+  // executeLogin(user = null, system = false): any {
 
+  //   this.http.post<ServiceResponse>(environment.baseUrlApiProd + "login", user).subscribe({
+  //     next: (resp) => {
+  //       if (resp.statusCode == ResponseCode.OK) {
+  //         if (system) {
+  //           this.systemToken = resp.result;
+  //         }
+  //         else {
+  //           this.userToken = resp.result;
+  //         }
+  //       }
+  //       else
+  //         return resp;
+  //     },
+  //     error: (error) => {
+  //       let response: ServiceResponse = {
+  //         statusCode: ResponseCode.InternalServerError,
+  //         message: String(error)
+  //       }
+  //       return response;
+  //     },
+  //     complete: () => {
+  //     }
+  //   });
+
+  // }
 
   requestPost(action: string, bodyParams = null, system = false): Observable<any> {
     let options = this.getCommomOptions(system, true);
@@ -182,7 +184,7 @@ export class BaseService {
     if (!json)
       headers = headers.set('Authorization', 'Bearer ' + token);
     else
-      headers = headers.set('Content-Type', 'application/json; charset=utf-8')//.set('Authorization', 'Bearer ' + token);
+      headers = headers.set('Content-Type', 'application/json; charset=utf-8').set('Authorization', 'Bearer ' + token);
 
     return {
       headers: headers

@@ -19,7 +19,7 @@ export class SubmitService extends BaseService {
     return this.requestGet(this.baseAction, filter, false);
   }
 
-  getSubmitById(id: number = 0): Observable<Submit[]> {
+  getSubmitById(id: number = 0): Observable<Submit> {
     const url = `${this.baseAction}/${id}`;
     return this.requestGet(url, null, false);
   }
@@ -31,5 +31,38 @@ export class SubmitService extends BaseService {
   updateSubmit(submit: Submit): Observable<Submit> {
     const url = `${this.baseAction}/${submit.id}`;
     return this.requestPut(url, null, submit, false);
+  }
+
+  //VALIDA OS LINKS INFORMADOS
+  validExternalCode(value: string, codeType: string): string {
+    console.log(value)
+    if (value != undefined && value != null && value != "") {
+      if (value.includes("https://")) {
+        if (value.includes(codeType)) {
+          return this.extractExternalCode(value, codeType);
+        }
+      }
+      return "invalid";
+    }
+    else {
+      console.log("Link invalido")
+      return null;
+    }
+  }
+
+  //EXTRAI O CODIGO A PARTIR DOS LINKS
+  extractExternalCode(value: string, codeType: string): string {
+    if (value.includes("spotify")) {
+      value = value.replace(codeType, "");
+      let siIndex = value.indexOf("?si=");
+      value = value.slice(0, siIndex);
+      return value;
+    }
+    if (value.includes("youtube")) {
+      value = value.replace(codeType, "");
+      let siIndex = value.indexOf("&");
+      value = value.slice(0, siIndex);
+      return value;
+    }
   }
 }

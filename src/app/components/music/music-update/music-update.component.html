@@ -1,1 +1,40 @@
-<p>music-update works!</p>
+<div class="main-page-card">
+    <h1 class="page-card-title">Alterar Música</h1>
+    <form *ngIf="this.loged" [formGroup]="musicForm" novalidate autocomplete="off" (ngSubmit)="createMusicSubmit(musicForm.value)">
+        <h3 class="music-form-desc">Para alterar uma música existente, preencha os campos e aguarde sua contribuição ser aprovada!</h3>
+
+        <mat-form-field appearance="outline" class="music-input">
+            <mat-label>Música</mat-label>
+            <input matInput id="musicName" formControlName="musicName" type="text" placeholder="Ex. All About You (feat. Foster The People)" name="musicName">  
+            <mat-error *ngIf="hasError('musicName', 'required')">O nome da música é obrigatório</mat-error>
+            <mat-error *ngIf="hasError('musicName', 'maxlength')">O nome da música deve conter no máximo 120 caractéres</mat-error>          
+        </mat-form-field> 
+        
+        <mat-form-field appearance="outline" class="music-input">
+            <mat-label>Spotify</mat-label>
+            <input matInput id="spotifyLink" formControlName="spotifyLink" type="text" placeholder="Link do Spotify" name="spotifyLink">
+            <mat-error *ngIf="hasError('spotifyLink', 'required')">O link do spotify é obrigatório</mat-error>
+            <mat-error *ngIf="hasError('spotifyLink', 'maxlength')">O link do spotify deve conter no máximo 300 caractéres</mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="music-input">
+            <mat-label>Youtube</mat-label>
+            <input matInput id="youtubeLink" formControlName="youtubeLink" type="text" placeholder="Link do Youtube" name="youtubeLink">
+            <mat-error *ngIf="hasError('youtubeLink', 'maxlength')">O link do youtube deve conter no máximo 300 caractéres</mat-error>
+        </mat-form-field>    
+        
+        <button mat-raised-button [disabled]="!musicForm.valid" class="button-primary">
+            Enviar Musica
+        </button>
+    </form> 
+    
+    <div *ngIf="!this.loged" class="main-card-error">
+        <span class="main-card-icon material-icons">
+            info
+        </span>
+        <span>
+            É necessário realizar login para fazer um envio!
+        </span>
+    </div>
+
+</div>

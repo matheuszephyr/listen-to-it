@@ -1,9 +1,9 @@
 import { UserService } from './../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Music } from './../music.model';
-import { MusicService } from './../music.service';
 import { Component, OnInit } from '@angular/core';
 import { AlertTypes, Messages } from '../../util/messages';
+import { MusicService } from '../../services/music.service';
 
 @Component({
   selector: 'app-music-home',
@@ -38,13 +38,13 @@ export class MusicHomeComponent implements OnInit {
     private musicService: MusicService,
     private router: Router,
     private route: ActivatedRoute,
-    private userService: UserService,
     private message: Messages
   ) { }
 
   ngOnInit(): void {
-    this.idMusic = Number.parseInt(this.route.snapshot.paramMap.get('id') ?? "");
-    
+    this.idMusic = Number.parseInt(this.route.snapshot.paramMap.get('id') ?? "0");
+    this.userLoged = this.musicService.loged();
+
     this.musicService.getMusicById(this.idMusic).subscribe(musicResult => {
 
       this.musicModel = musicResult;

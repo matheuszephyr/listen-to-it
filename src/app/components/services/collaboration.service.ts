@@ -13,9 +13,13 @@ export class CollaborationService extends BaseService {
 
   constructor(private https: HttpClient) {
     super(https);
-   }
+  }
 
-   listCollaboration(filter: CollaborationFilter): Observable<UserCollaboration[]>{
-     return this.requestGet(this._baseAction, filter, true);
-   }
+  listCollaboration(filter: CollaborationFilter): Observable<UserCollaboration[]> {
+    return this.requestGet(this._baseAction, filter, true);
+  }
+
+  insertCollaboration(collaboration: UserCollaboration): Observable<UserCollaboration> {
+    return this.requestPost(this._baseAction, collaboration, true);
+  }
 }

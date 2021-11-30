@@ -1,0 +1,68 @@
+<div class="main-page-card">
+    <h1 class="page-card-title">Album</h1>
+
+    <div class="album-details">
+
+        <div class="album-details-container">
+
+            <div class="album-details-info-block">
+                <div class="album-info">
+                    <span class="album-info-icon material-icons md-18">
+                        album
+                    </span>
+                    <span class="album-info-value">{{albumModel.albumName}}</span>
+                </div>
+                <div class="album-info">
+                    <span class="album-info-icon material-icons md-18">
+                        mic_external_on
+                    </span>
+                    <span class="album-info-value">{{albumModel.artistName}}</span>
+                </div>
+                <div class="album-info">
+                    <span class="album-info-icon material-icons md-18">
+                        event
+                    </span>
+                    <span class="album-info-value">{{albumModel.albumYear}}</span>
+                </div>
+
+                <div class="album-info album-link">
+                    <span class="album-info-icon material-icons md-18">
+                        share
+                    </span>
+                    <span *ngIf="this.albumModel.spotifyCode != null" class="button">
+                        <a href="https://open.spotify.com/album/{{albumModel.spotifyCode}}" target="_blank">
+                            <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
+                        </a>
+                    </span>
+
+                </div>
+
+                <div class="spotify-iframe">
+                    <iframe id="spotifyframe" src="" width="100%" height="380" frameBorder="0" allowfullscreen=""
+                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                </div>
+
+                <div class="album-info album-like">
+                    <span class="material-icons album-like-button {{this.actionLayout.likeStatus}}">
+                        thumb_up
+                    </span>
+                    <span class="album-like-count album-info-value">33</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="album-colab-list">
+            <app-collaboration-list idAlbum={{this.idAlbum}}></app-collaboration-list>
+        </div>
+
+        <div class="main-date-block">
+            <div class="created">
+                <span>Data de Envio : </span>{{ albumModel.createdAt | date:'dd/MM/yyyy hh:mm'}}
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

@@ -36,11 +36,18 @@
 
     &-logout{
         cursor: pointer;
-        color: blueviolet;
-
-        &:hover{
-            color: red;
-        }
+        color: #00fff3;
+        font-size: 1.0rem;        
     }
 }
 
+
+.password{
+    &-hide{
+        &-button{
+            margin-top: 0.5rem !important;
+            display: flex !important;
+            float: right !important;
+        }
+    }
+}

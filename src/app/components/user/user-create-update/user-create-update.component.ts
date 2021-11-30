@@ -1,10 +1,9 @@
 import { ServiceResponse } from './../../services/service.model';
-import { UserType } from './../user.model';
 import { Component, Input, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AlertTypes, Messages } from './../../util/messages';
-import { User } from '../user.model';
+import { User, UserType } from '../user.model';
 import { UserService } from '../../services/user.service';
 
 

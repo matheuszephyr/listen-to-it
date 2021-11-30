@@ -1,4 +1,4 @@
-.music {
+.album{
     &-details {
         &-container {
             display: flex;
@@ -60,6 +60,7 @@
     &-like {
         display: flex;
         align-items: flex-end;
+        margin-top: 2rem;
 
         &-button {
             text-decoration: none;
@@ -130,15 +131,4 @@
             margin-top: 1rem;
         }
     }
-} // fim da classe principal .music
-
-.youtube-iframe {
-    iframe {
-        max-width: 100%;
-    }
-}
-
-.spotify-iframe {
-    min-width: 50%;
-    max-width: 500px;
 }

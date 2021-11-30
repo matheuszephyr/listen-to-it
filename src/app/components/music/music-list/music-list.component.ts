@@ -1,5 +1,5 @@
-import { MusicService } from '../music.service';
 import { Component, OnInit } from '@angular/core';
+import { MusicService } from '../../services/music.service';
 import { Music } from '../music.model';
 
 @Component({
@@ -14,7 +14,7 @@ export class MusicListComponent implements OnInit {
   constructor(private musicService: MusicService) { }
 
   ngOnInit(): void {
-    this.musicService.listMusic().subscribe(returnMusics => {
+    this.musicService.listMusic(null, true).subscribe(returnMusics => {
       this.musics = returnMusics;
     });
   }  

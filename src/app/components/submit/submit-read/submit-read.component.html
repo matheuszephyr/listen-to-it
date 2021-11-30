@@ -1,0 +1,95 @@
+<div class="main-page-card">
+    <h1 class="page-card-title">Detalhes do Envio</h1>
+    <form *ngIf="this.userAdmin" [formGroup]="submitForm" novalidate autocomplete="off"
+        (ngSubmit)="aproveSubmit(submitForm.value)">
+        <h3 class="submit-form-desc">Revisar e/ou alterar informações de envio!</h3>
+
+        <div class="submit-state">
+            <div class="color-text-primary">Status: <span
+                    class="status-value {{this.submitModel.status}}">{{this.submitModel.status}}</span> </div>
+            <div class="color-text-primary">Tipo de Envio: <span
+                    class="type-value {{this.submitModel.submitType}}">{{this.submitModel.submitType}}</span> </div>
+        </div>
+
+        <div class="submit-form-container">
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Música</mat-label>
+                <input matInput id="musicName" formControlName="musicName" type="text"
+                    placeholder="Ex. All About You (feat. Foster The People)" name="musicName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Artista</mat-label>
+                <input matInput id="artistName" formControlName="artistName" type="text" placeholder="Artista ou Banda"
+                    name="artistName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Spotify</mat-label>
+                <input matInput id="spotifyCode" formControlName="spotifyCode" type="text"
+                    placeholder="Codigo do Spotify" name="spotifyCode">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Youtube</mat-label>
+                <input matInput id="youtubeCode" formControlName="youtubeCode" type="text"
+                    placeholder="Codigo do Youtube" name="youtubeCode">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Álbum</mat-label>
+                <input matInput id="albumName" formControlName="albumName" type="text" placeholder="Nome do Álbum"
+                    name="albumName">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Ano do Álbum</mat-label>
+                <input matInput id="albumYear" formControlName="albumYear" type="text" placeholder="Ano do Álbum"
+                    name="albumYear">
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Letra</mat-label>                
+                <textarea class="submit-lyrics-text" matInput cols="40" rows="25" formControlName="lyricsText"></textarea>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="form-input">
+                <mat-label>Idioma da Letra</mat-label>
+                <input matInput id="lyricsLanguage" formControlName="lyricsLanguage" type="text"
+                    placeholder="Idioma da Letra" name="lyricsLanguage">
+            </mat-form-field>
+
+
+        </div>
+
+
+        <div *ngIf="this.enableButtons" class="submit-form-button-group">
+            <button mat-raised-button class="button-sucess">
+                Aprovar
+            </button>
+            <button type="button" (click)="rejectSubmit()" mat-raised-button class="button-danger">
+                Rejeitar
+            </button>
+        </div>
+
+        <div *ngIf="!this.enableButtons" class="main-card-info">
+            <span class="main-card-icon material-icons">
+                info
+            </span>
+            <span>
+                Este envio já foi analisado!
+            </span>
+        </div>
+    </form>
+
+    <div *ngIf="!this.userAdmin" class="main-card-error">
+        <span class="main-card-icon material-icons">
+            info
+        </span>
+        <span>
+            Acesso não autorizado para o seu usuário!
+        </span>
+    </div>
+
+</div>

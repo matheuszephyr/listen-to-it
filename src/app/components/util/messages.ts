@@ -14,7 +14,6 @@ export class Messages {
 
     showAlert(type: AlertTypes, text: string){
 
-        console.log(type, text)
         switch(type){
             case AlertTypes.danger : {
                 this.alert.danger(text);

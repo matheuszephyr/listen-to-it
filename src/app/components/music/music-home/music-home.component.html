@@ -16,14 +16,14 @@
                     <span class="music-info-icon material-icons md-18">
                         mic_external_on
                     </span>
-                    <span class="music-info-value">{{musicModel.artistName}}</span>
+                    <span routerLink="/artist/home/{{musicModel.idArtist}}" class="music-info-value button-hover">{{musicModel.artistName}}</span>
                 </div>
                 <div class="music-info">
                     <span class="music-info-icon material-icons md-18">
-                        library_music
+                        album
                     </span>
-                    <span *ngIf="this.musicModel.albumName != null" class="music-info-value">{{musicModel.albumName}}</span>
-                    <span *ngIf="!(this.musicModel.albumName != null)" class="music-info-value button-primary">Enviar Album</span>
+                    <span *ngIf="this.musicModel.albumName != null" routerLink="/album/home/{{musicModel.idAlbum}}" class="button-hover music-info-value">{{musicModel.albumName}}</span>
+                    <span *ngIf="!(this.musicModel.albumName != null)" routerLink="/album/create/{{musicModel.idArtist}}" class="music-info-value button-primary">Enviar Album</span>
                 </div>
 
                 <div class="music-info music-link">
@@ -55,6 +55,10 @@
                     </span>
                     <span class="music-like-count music-info-value">{{musicModel.likeCount}}</span>
                 </div>
+
+                <div class="music-info" routerLink="/music/edit/{{musicModel.id}}">
+                    <span class="button-primary">Revisar Música</span>
+                </div>
             </div>            
 
             <div class="youtube-iframe">
@@ -73,6 +77,12 @@
 
         <div class="music-colab-list">
             <app-collaboration-list idMusic={{this.idMusic}}></app-collaboration-list>
+        </div>
+
+        <div class="main-date-block">
+            <div class="created">
+                <span>Data de Envio : </span>{{ this.musicModel.createdAt | date:'dd/MM/yyyy hh:mm'}}
+            </div>
         </div>
 
 

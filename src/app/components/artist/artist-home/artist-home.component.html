@@ -1,0 +1,58 @@
+<div class="main-page-card">
+    <h1 class="page-card-title">Artista</h1>
+
+    <div class="artist-details">
+
+        <div class="artist-details-container">
+
+            <div class="artist-details-info-block">
+                <div class="artist-info">
+                    <span class="artist-info-icon material-icons md-18">
+                        interpreter_mode
+                    </span>
+                    <span class="artist-info-value">{{artistModel.artistName}}</span>
+                </div>
+
+                <div class="artist-info artist-link">
+                    <span class="artist-info-icon material-icons md-18">
+                        share
+                    </span>
+                    <span *ngIf="this.artistModel.spotifyCode != null" class="button">
+                        <a href="https://open.spotify.com/artist/{{artistModel.spotifyCode}}" target="_blank">
+                            <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
+                        </a>
+                    </span>
+
+                </div>
+
+                <div class="spotify-iframe">                   
+                    <iframe id="spotifyframe"
+                        src=""
+                        width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;"
+                        allowtransparency="true"></iframe>
+                </div>
+
+                <div class="artist-info artist-like">
+                    <span class="material-icons artist-like-button {{this.actionLayout.likeStatus}}">
+                        thumb_up
+                    </span>
+                    <span class="artist-like-count artist-info-value">33</span>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="artist-colab-list">
+            <app-collaboration-list idArtist={{this.idArtist}}></app-collaboration-list>
+        </div>
+
+        <div class="main-date-block">
+            <div class="created">
+                <span>Data de Envio : </span>{{ artistModel.createdAt | date:'dd/MM/yyyy hh:mm'}}
+            </div>
+        </div>
+
+
+    </div>
+
+</div>

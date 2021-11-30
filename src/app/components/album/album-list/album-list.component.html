@@ -1,0 +1,42 @@
+<div class="main-page-card">
+    <h1 class="page-card-title">Ultimos Envios de Álbuns</h1>
+    <div>
+        <div class="album-card" *ngFor="let album of this.albumList">
+            <!-- <mat-card-title></mat-card-title> -->
+            <div class="album-name">
+                <span class="material-icons md-18">
+                    album
+                </span>
+                <span class="album-name button-hover-primary" routerLink="/album/home/{{album.id}}">{{album.albumName}}</span>
+            </div>
+            <div class="album-artist">
+                <span class="material-icons md-18">
+                    mic_external_on
+                </span>
+                <span class="album-artist button-hover-primary" routerLink="/artist/home/{{album.idArtist}}">{{album.artistName}}</span>
+            </div>
+            <div class="album-artist">
+                <span class="material-icons md-18">
+                    event
+                </span>
+                {{album.albumYear}}
+            </div>
+            <div class="album-actions">
+                <div class="album-like-button">
+                    <span class="material-icons album-like-button button-hover-primary">
+                        thumb_up
+                    </span>
+                    <span class="album-like-count">{{album.likeCount}}</span>
+                </div>
+
+                <div class="album-link">                   
+                    <span class="button">
+                        <a href="https://open.spotify.com/album/{{album.spotifyCode}}" target="_blank">
+                            <img class="icon" src="assets/img/spotify-icon.svg" alt="Spotify">
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

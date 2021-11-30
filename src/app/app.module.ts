@@ -36,7 +36,6 @@ import { MusicCreateComponent } from './components/music/music-create/music-crea
 import { MusicUpdateComponent } from './components/music/music-update/music-update.component';
 import { UserLoginComponent } from './components/user/user-login/user-login.component';
 import { UserProfileComponent } from './components/user/user-profile/user-profile.component';
-import { UserUpdateComponent } from './components/user/user-update/user-update.component';
 import { SubmitListComponent } from './components/submit/submit-list/submit-list.component';
 import { LoadingComponent } from './components/template/loading/loading.component';
 import { LyricsListComponent } from './components/lyrics/lyrics-list/lyrics-list.component';
@@ -44,6 +43,12 @@ import { MusicComentaryComponent } from './components/music/music-comentary/musi
 import { CollaborationListComponent } from './components/shared/collaboration-list/collaboration-list.component';
 import { MessagesPipe } from './components/util/messages.pipe';
 import { UserCreateUpdateComponent } from './components/user/user-create-update/user-create-update.component';
+import { AlbumHomeComponent } from './components/album/album-home/album-home.component';
+import { AlbumCreateComponent } from './components/album/album-create/album-create.component';
+import { AlbumUpdateComponent } from './components/album/album-update/album-update.component';
+import { AlbumListComponent } from './components/album/album-list/album-list.component';
+import { ArtistHomeComponent } from './components/artist/artist-home/artist-home.component';
+import { SubmitReadComponent } from './components/submit/submit-read/submit-read.component';
 
 @NgModule({
   declarations: [
@@ -58,14 +63,19 @@ import { UserCreateUpdateComponent } from './components/user/user-create-update/
     MusicUpdateComponent,
     UserLoginComponent,
     UserProfileComponent,
-    UserUpdateComponent,
     SubmitListComponent,
     LoadingComponent,
     LyricsListComponent,
     MusicComentaryComponent,
     CollaborationListComponent,
     MessagesPipe,
-    UserCreateUpdateComponent
+    UserCreateUpdateComponent,
+    AlbumHomeComponent,
+    AlbumCreateComponent,
+    AlbumUpdateComponent,
+    AlbumListComponent,
+    ArtistHomeComponent,
+    SubmitReadComponent
   ],
   imports: [
     BrowserModule,

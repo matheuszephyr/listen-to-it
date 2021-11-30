@@ -1,0 +1,49 @@
+.submit {
+    &-state {
+        font-weight: 500;
+        display: flex;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+        border-bottom: 1px solid blueviolet;
+        padding-bottom: 0.9rem;
+
+        .status-value {
+            margin-right: 1rem;
+
+            &.Aprovado {
+                color: greenyellow;
+            }
+            &.Analise {
+                color: yellow;
+            }
+            &.Processando {
+                color: blue;
+            }
+            &.Recusado {
+                color: red;
+            }
+        }
+
+        .type-value{
+            color: cyan;
+        }
+    }
+
+    &-form{
+        &-container{  
+            display: flex;
+            flex-flow: wrap;
+
+            .form-input{
+                width: 700px;
+                margin-right: auto;
+            }
+        }  
+        
+        &-button-group{
+            display: flex;
+            justify-content: space-between;
+            max-width: 700px;
+        }
+    }    
+}

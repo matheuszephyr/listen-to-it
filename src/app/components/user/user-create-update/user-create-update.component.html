@@ -2,7 +2,7 @@
     <h1 *ngIf="this.update" class="page-card-title">Editar Usuário</h1>
     <h1 *ngIf="!this.update" class="page-card-title">Novo Usuário</h1>
     <form [formGroup]="userUpdateForm" novalidate autocomplete="off" (ngSubmit)="saveUser(userUpdateForm.value)">
-        <h3 class="user-form-desc">Preencha os campos obrigatórios para realizar seu cadastro!</h3>
+        <h3 *ngIf="!this.update" class="user-form-desc">Preencha os campos obrigatórios para realizar seu cadastro!</h3>
 
         <div class="user-form-container">
             <mat-form-field appearance="outline" class="username-input">

@@ -1,5 +1,5 @@
 <div class="main-page-card">
-    <h1 class="page-card-title">Ultimos Envios</h1>
+    <h1 class="page-card-title">Ultimos Envios de Músicas</h1>
     <div>
         <div class="music-card" *ngFor="let mus of musics">
             <!-- <mat-card-title></mat-card-title> -->
@@ -7,7 +7,7 @@
                 <span class="material-icons md-18">
                     audiotrack
                 </span>
-                <a class="music-name" routerLink="/music/{{mus.id}}">{{mus.musicName}}</a>
+                <span class="music-name button-hover-primary" routerLink="/music/{{mus.id}}">{{mus.musicName}}</span>
             </div>
             <div class="music-artist">
                 <span class="material-icons md-18">
@@ -17,7 +17,7 @@
             </div>
             <div class="music-actions">
                 <div class="music-like-button">
-                    <span (click)="likeMusic(mus.id)" class="material-icons music-like-button">
+                    <span (click)="likeMusic(mus.id)" class="material-icons music-like-button button-hover-primary">
                         thumb_up
                     </span>
                     <span class="music-like-count">{{mus.likeCount}}</span>
